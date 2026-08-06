@@ -9,8 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --red:#E01E26; --black:#141414; --ink:#1E1E1E; --slate:#5C6470;
-  --panel:#F4F5F7; --rule:#E3E6EC; --gold:#F2C230; --paper:#FFFFFF;
+  --red:#E45932; --black:#141414; --ink:#1E1E1E; --slate:#5C6470;
+  --panel:#F4F5F7; --rule:#E3E6EC; --gold:#1E7FE0; --paper:#FFFFFF;
+  --brand-blue:#0054DF; --brand-blue-light:#3DA0E0; --brand-blue-dark:#00327A;
+  --brand-orange:#E45932; --brand-orange-light:#EEA05A;
   --font:"IBM Plex Sans Thai","Noto Sans Thai","Leelawadee UI",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
@@ -28,6 +30,7 @@ body{
   aspect-ratio:16/9; width:100%; max-width:calc(96vh * 16 / 9); max-height:96vh;
   box-shadow:0 30px 80px rgba(0,0,0,.5); border-radius:6px; overflow:hidden;
   container-type:inline-size;
+  border-top:.45cqw solid; border-image:linear-gradient(90deg,var(--brand-blue),var(--brand-orange-light),var(--brand-orange)) 1;
 }
 
 .slide{
@@ -38,13 +41,8 @@ body{
 
 /* ---------- header ---------- */
 .slide-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:2.2cqw}
-.brand{display:flex; align-items:center; gap:.7cqw}
-.brand .mark{
-  width:2.6cqw; height:2.6cqw; min-width:22px; min-height:22px; background:var(--gold);
-  border-radius:.4cqw; display:flex; align-items:center; justify-content:center;
-  font-weight:700; font-size:1.1cqw; color:var(--black);
-}
-.brand .name{font-size:1.05cqw; font-weight:600; color:var(--slate); letter-spacing:.02em}
+.brand{display:flex; align-items:center}
+.ci-logo{height:2.7cqw; width:auto; min-height:20px; border-radius:.3cqw; display:block}
 .slide-title{font-size:1.9cqw; font-weight:700; color:var(--black); text-align:right; line-height:1.25}
 .slide-title small{display:block; font-size:1cqw; font-weight:500; color:var(--red); margin-top:.2cqw}
 
@@ -110,7 +108,7 @@ body{
 .legend-chip .ltr{width:1.8cqw; height:1.8cqw; min-width:18px; min-height:18px; border-radius:50%; color:#fff; font-weight:700; font-size:.95cqw; display:flex; align-items:center; justify-content:center; flex-shrink:0}
 .legend-chip .lx{font-size:.85cqw; color:var(--slate)}
 .legend-chip .lx b{display:block; font-size:.95cqw; color:var(--ink)}
-.chip-s{background:#3B82C4} .chip-t{background:#E8A23A} .chip-a{background:#E01E26} .chip-r{background:#1E9E6B}
+.chip-s{background:#3B82C4} .chip-t{background:#E8A23A} .chip-a{background:var(--red)} .chip-r{background:#1E9E6B}
 
 .compare{flex:1; display:grid; grid-template-columns:1fr 1.3fr; gap:1.4cqw; min-height:0}
 .compare-col{border-radius:.7cqw; padding:1.3cqw; display:flex; flex-direction:column}
@@ -202,24 +200,42 @@ body{
 .lab-hint{font-size:.82cqw; color:var(--slate); line-height:1.5}
 
 /* ---------- profile / cover ---------- */
-.profile-layout{flex:1; display:grid; grid-template-columns:1fr 1.15fr; gap:2.2cqw; min-height:0; align-items:center}
+.slide.cover{
+  background:
+    radial-gradient(circle 19cqw at 87% 6%, var(--brand-orange-light) 0%, var(--brand-orange) 32%, transparent 72%),
+    radial-gradient(circle 22cqw at 40% 72%, var(--brand-orange-light) 0%, var(--brand-orange) 28%, transparent 68%),
+    radial-gradient(circle 24cqw at 6% 15%, var(--brand-blue-light) 0%, transparent 60%),
+    linear-gradient(160deg, var(--brand-blue) 0%, var(--brand-blue-dark) 100%);
+  overflow:hidden;
+}
+.slide.cover::before{
+  content:""; position:absolute; inset:1.4cqw; border:1px solid rgba(255,255,255,.35);
+  border-radius:.5cqw; pointer-events:none;
+}
+.slide.cover::after{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.5; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+.profile-layout{flex:1; display:grid; grid-template-columns:1fr 1.15fr; gap:2.2cqw; min-height:0; align-items:center; position:relative; z-index:1}
 .profile-left{display:flex; flex-direction:column; gap:1.8cqw; min-height:0}
 .profile-photo{
   width:11cqw; height:11cqw; min-width:80px; min-height:80px; align-self:flex-start;
-  border-radius:.6cqw; background:var(--panel); overflow:hidden;
+  border-radius:.6cqw; background:var(--panel); overflow:hidden; border:.28cqw solid rgba(255,255,255,.85);
+  box-shadow:0 .5cqw 1.4cqw rgba(0,20,60,.35);
 }
 .profile-photo img{width:100%; height:100%; object-fit:cover; display:block}
 .logo-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:.8cqw}
 .logo-tile{
-  background:#fff; border:1px solid var(--rule); border-radius:.5cqw; padding:.9cqw .8cqw;
+  background:rgba(255,255,255,.94); border:1px solid rgba(255,255,255,.5); border-radius:.5cqw; padding:.9cqw .8cqw;
   display:flex; align-items:center; justify-content:center; min-height:4cqw;
+  box-shadow:0 .3cqw .8cqw rgba(0,20,60,.18);
 }
 .logo-tile.img img{max-width:85%; max-height:3.2cqw; object-fit:contain}
 .profile-right{display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:.5cqw}
-.profile-right .pr-eyebrow{font-size:1cqw; font-weight:600; color:var(--slate); letter-spacing:.06em; text-transform:uppercase}
-.profile-right h1{margin:0; font-size:3.6cqw; font-weight:700; color:var(--black); line-height:1.1}
-.profile-right h1 .accent{display:block; color:var(--red)}
-.profile-right .pr-sub{font-size:1.05cqw; color:var(--slate); margin-top:.5cqw}
+.profile-right .pr-eyebrow{font-size:1cqw; font-weight:600; color:rgba(255,255,255,.75); letter-spacing:.06em; text-transform:uppercase}
+.profile-right h1{margin:0; font-size:3.6cqw; font-weight:700; color:#fff; line-height:1.1}
+.profile-right h1 .accent{display:block; color:var(--brand-orange-light)}
+.profile-right .pr-sub{font-size:1.05cqw; color:rgba(255,255,255,.8); margin-top:.5cqw}
 
 /* ---------- agenda ---------- */
 .agenda-list{flex:1; display:flex; flex-direction:column; justify-content:center; gap:1.3cqw}
@@ -267,7 +283,7 @@ body{
 <div class="stage">
   <div class="deck" id="deck">
 
-    <section class="slide active" data-title="Profile">
+    <section class="slide cover active" data-title="Profile">
       <div class="profile-layout">
         <div class="profile-left">
           <div class="profile-photo">
@@ -293,8 +309,7 @@ body{
     <section class="slide" data-title="Agenda">
       <div class="slide-head">
         <div class="brand">
-          <div class="mark">A</div>
-          <div class="name">THE PORTFOLIO For University</div>
+          <img class="ci-logo" src="assets/ci/logo-lockup.png" alt="Young Innovator Bootcamp x True Digital Academy">
         </div>
         <div class="slide-title">
           วันนี้เราจะคุยอะไรกันบ้าง
@@ -337,8 +352,7 @@ body{
     <section class="slide" data-title="ขั้นตอนสมัคร Portfolio">
       <div class="slide-head">
         <div class="brand">
-          <div class="mark">A</div>
-          <div class="name">THE PORTFOLIO For University</div>
+          <img class="ci-logo" src="assets/ci/logo-lockup.png" alt="Young Innovator Bootcamp x True Digital Academy">
         </div>
         <div class="slide-title">
           ขั้นตอนสมัคร Portfolio ให้ติดมหาวิทยาลัย
@@ -409,8 +423,7 @@ body{
     <section class="slide" data-title="รู้จัก TCAS ให้ลึกขึ้น">
       <div class="slide-head">
         <div class="brand">
-          <div class="mark">A</div>
-          <div class="name">THE PORTFOLIO For University</div>
+          <img class="ci-logo" src="assets/ci/logo-lockup.png" alt="Young Innovator Bootcamp x True Digital Academy">
         </div>
         <div class="slide-title">
           รู้จัก TCAS ให้ลึกขึ้น
@@ -432,8 +445,7 @@ body{
     <section class="slide" data-title="สามผู้เล่นที่ต้องเข้าใจ">
       <div class="slide-head">
         <div class="brand">
-          <div class="mark">A</div>
-          <div class="name">THE PORTFOLIO For University</div>
+          <img class="ci-logo" src="assets/ci/logo-lockup.png" alt="Young Innovator Bootcamp x True Digital Academy">
         </div>
         <div class="slide-title">
           สามผู้เล่นที่ต้องเข้าใจ
@@ -467,8 +479,7 @@ body{
     <section class="slide" data-title="STAR Method">
       <div class="slide-head">
         <div class="brand">
-          <div class="mark">A</div>
-          <div class="name">THE PORTFOLIO For University</div>
+          <img class="ci-logo" src="assets/ci/logo-lockup.png" alt="Young Innovator Bootcamp x True Digital Academy">
         </div>
         <div class="slide-title">
           เล่าแบบไหน ถึงจะน่าจำ?
@@ -503,8 +514,7 @@ body{
     <section class="slide" data-title="แกะพอร์ตจริงด้วย STAR">
       <div class="slide-head">
         <div class="brand">
-          <div class="mark">A</div>
-          <div class="name">THE PORTFOLIO For University</div>
+          <img class="ci-logo" src="assets/ci/logo-lockup.png" alt="Young Innovator Bootcamp x True Digital Academy">
         </div>
         <div class="slide-title">
           แกะพอร์ตจริงด้วย STAR
@@ -535,8 +545,7 @@ body{
     <section class="slide" data-title="คำสั่งกิจกรรม">
       <div class="slide-head">
         <div class="brand">
-          <div class="mark">A</div>
-          <div class="name">THE PORTFOLIO For University</div>
+          <img class="ci-logo" src="assets/ci/logo-lockup.png" alt="Young Innovator Bootcamp x True Digital Academy">
         </div>
         <div class="slide-title">
           เขียนเรื่องของคุณด้วย STAR
@@ -556,8 +565,7 @@ body{
     <section class="slide" data-title="แนะนำตัว 30 วินาที">
       <div class="slide-head">
         <div class="brand">
-          <div class="mark">A</div>
-          <div class="name">THE PORTFOLIO For University</div>
+          <img class="ci-logo" src="assets/ci/logo-lockup.png" alt="Young Innovator Bootcamp x True Digital Academy">
         </div>
         <div class="slide-title">
           ฝึกแนะนำตัว 30 วินาทีแรก
@@ -581,8 +589,7 @@ body{
     <section class="slide" data-title="แชร์เรื่องของคุณ">
       <div class="slide-head">
         <div class="brand">
-          <div class="mark">A</div>
-          <div class="name">THE PORTFOLIO For University</div>
+          <img class="ci-logo" src="assets/ci/logo-lockup.png" alt="Young Innovator Bootcamp x True Digital Academy">
         </div>
         <div class="slide-title">
           แชร์เรื่องของคุณ
@@ -603,8 +610,7 @@ body{
     <section class="slide" data-title="สร้าง Prompt แนะนำตัว">
       <div class="slide-head">
         <div class="brand">
-          <div class="mark">A</div>
-          <div class="name">THE PORTFOLIO For University</div>
+          <img class="ci-logo" src="assets/ci/logo-lockup.png" alt="Young Innovator Bootcamp x True Digital Academy">
         </div>
         <div class="slide-title">
           ลองใช้เอง: สร้าง Prompt แนะนำตัว 1 นาที
