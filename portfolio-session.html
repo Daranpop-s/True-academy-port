@@ -174,6 +174,42 @@ body{
 .share-lines p{margin:0; font-size:1.35cqw; color:var(--ink); font-weight:600}
 .share-lines p.sub{font-size:1cqw; color:var(--slate); font-weight:400}
 
+/* ---------- prompt-builder lab ---------- */
+.lab-layout{flex:1; display:grid; grid-template-columns:1fr 1fr; gap:1.4cqw; min-height:0}
+.lab-col{display:flex; flex-direction:column; gap:.85cqw; min-height:0; overflow:auto}
+.field{display:flex; flex-direction:column; gap:.32cqw}
+.field label{font-size:.8cqw; font-weight:600; color:var(--slate)}
+.field input[type=text], .field textarea{
+  font-family:var(--font); font-size:.88cqw; color:var(--ink); border:1px solid var(--rule); border-radius:.45cqw;
+  padding:.5cqw .7cqw; resize:none; background:#fff;
+}
+.field input[type=text]{padding:.6cqw .7cqw}
+.field textarea{line-height:1.4}
+.mini-grid{display:grid; grid-template-columns:1fr 1fr; gap:.8cqw}
+.mini-grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:.8cqw}
+.flabel-chip{display:flex; align-items:center; gap:.4cqw; font-size:.8cqw; font-weight:700; color:var(--ink)}
+.flabel-chip .ltr{width:1.3cqw; height:1.3cqw; min-width:14px; min-height:14px; border-radius:50%; color:#fff; font-size:.68cqw; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.gen-btn{
+  margin-top:.2cqw; align-self:flex-start; background:var(--red); color:#fff; border:none; font-family:var(--font);
+  font-weight:700; font-size:1cqw; padding:.68cqw 1.3cqw; border-radius:.5cqw; cursor:pointer;
+  display:flex; align-items:center; gap:.5cqw;
+}
+.gen-btn:hover{background:#C81620}
+.lab-output label{font-size:.8cqw; font-weight:600; color:var(--slate)}
+#promptOut{
+  flex:none; height:15.5cqw; font-family:ui-monospace,"SF Mono",Consolas,monospace; font-size:.78cqw; line-height:1.5;
+  color:var(--ink); background:var(--panel); border:1px solid var(--rule); border-radius:.5cqw; padding:.9cqw; resize:none;
+}
+.copy-row{display:flex; align-items:center; gap:.8cqw}
+.copy-btn{
+  background:var(--black); color:#fff; border:none; font-family:var(--font); font-weight:700; font-size:.9cqw;
+  padding:.55cqw 1.2cqw; border-radius:.5cqw; cursor:pointer;
+}
+.copy-btn:disabled{opacity:.35; cursor:default}
+.copy-status{font-size:.82cqw; color:#1E9E6B; font-weight:600; opacity:0; transition:opacity .2s}
+.copy-status.show{opacity:1}
+.lab-hint{font-size:.82cqw; color:var(--slate); line-height:1.5}
+
 @media (prefers-color-scheme: dark){
   body{background:#000}
 }
@@ -423,6 +459,77 @@ body{
       </div>
     </section>
 
+    <section class="slide" data-title="สร้าง Prompt แนะนำตัว">
+      <div class="slide-head">
+        <div class="brand">
+          <div class="mark">A</div>
+          <div class="name">THE PORTFOLIO For University</div>
+        </div>
+        <div class="slide-title">
+          ลองใช้เอง: สร้าง Prompt แนะนำตัว 1 นาที
+          <small>กรอกจากสิ่งที่เรียนรู้ในเซสชันนี้ แล้วกด "สร้าง Prompt"</small>
+        </div>
+      </div>
+
+      <div class="lab-layout">
+        <div class="lab-col">
+          <div class="field">
+            <label>ชื่อเล่น และคณะที่อยากสมัคร</label>
+            <input type="text" id="nameInput" placeholder="เช่น seven, วิศวกรรมเคมี">
+          </div>
+
+          <div class="mini-grid">
+            <div class="field">
+              <div class="flabel-chip"><span class="ltr chip-s">S</span>สถานการณ์</div>
+              <textarea id="sInput" rows="2" placeholder="ตอนนั้นสถานการณ์/ปัญหาคืออะไร"></textarea>
+            </div>
+            <div class="field">
+              <div class="flabel-chip"><span class="ltr chip-t">T</span>หน้าที่</div>
+              <textarea id="tInput" rows="2" placeholder="คุณมีหน้าที่/เป้าหมายอะไร"></textarea>
+            </div>
+            <div class="field">
+              <div class="flabel-chip"><span class="ltr chip-a">A</span>ลงมือทำ</div>
+              <textarea id="aInput" rows="2" placeholder="คุณลงมือทำอะไรบ้าง"></textarea>
+            </div>
+            <div class="field">
+              <div class="flabel-chip"><span class="ltr chip-r">R</span>ผลลัพธ์</div>
+              <textarea id="rInput" rows="2" placeholder="ผลลัพธ์ที่วัดได้คืออะไร"></textarea>
+            </div>
+          </div>
+
+          <div class="mini-grid-3">
+            <div class="field">
+              <label>สิ่งที่คุณรักจะทำจริงๆ</label>
+              <textarea id="passionInput" rows="2" placeholder="..."></textarea>
+            </div>
+            <div class="field">
+              <label>คณะนี้เชี่ยวชาญ/ต้องการอะไร</label>
+              <textarea id="fitInput" rows="2" placeholder="..."></textarea>
+            </div>
+            <div class="field">
+              <label>ทำไมต้องที่นี่ ทำไมต้องตอนนี้</label>
+              <textarea id="whyInput" rows="2" placeholder="..."></textarea>
+            </div>
+          </div>
+
+          <button class="gen-btn" id="genBtn">
+            สร้าง Prompt
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+
+        <div class="lab-col lab-output">
+          <label>Prompt พร้อมใช้ — คัดลอกไปวางใน AI ที่คุณใช้</label>
+          <textarea id="promptOut" readonly placeholder='กด "สร้าง Prompt" ทางซ้าย แล้วผลลัพธ์จะขึ้นตรงนี้'></textarea>
+          <div class="copy-row">
+            <button class="copy-btn" id="copyBtn" disabled>คัดลอก</button>
+            <span class="copy-status" id="copyStatus">คัดลอกแล้ว ✓</span>
+          </div>
+          <div class="lab-hint">วางใน ChatGPT, Claude หรือ Gemini เพื่อลองสร้างคำแนะนำตัว แล้วย้อนมาแก้คำตอบด้านซ้าย กด "สร้าง Prompt" ใหม่ เพื่อได้แบบที่ดีกว่าเดิม</div>
+        </div>
+      </div>
+    </section>
+
     <div class="slide-foot">
       <div class="foot-note">DEKSHOWPORT × True Digital Academy</div>
       <div class="nav">
@@ -454,6 +561,58 @@ document.addEventListener('keydown', (e)=>{
   if(e.key==='ArrowLeft'){ if(i>0){ i--; render(); } }
 });
 render();
+
+const genBtn = document.getElementById('genBtn');
+const copyBtn = document.getElementById('copyBtn');
+const promptOut = document.getElementById('promptOut');
+const copyStatus = document.getElementById('copyStatus');
+
+function fieldVal(id){
+  const el = document.getElementById(id);
+  return el && el.value.trim() ? el.value.trim() : '(ยังไม่ได้กรอก)';
+}
+
+function buildPrompt(){
+  const name = fieldVal('nameInput');
+  const s = fieldVal('sInput'), t = fieldVal('tInput'), a = fieldVal('aInput'), r = fieldVal('rInput');
+  const passion = fieldVal('passionInput'), fit = fieldVal('fitInput'), why = fieldVal('whyInput');
+  return 'คุณคือโค้ชฝึกพูดสำหรับรอบสัมภาษณ์ Portfolio เข้ามหาวิทยาลัยไทย\n'
+    + 'ช่วยเขียนคำแนะนำตัว (self-introduction) ความยาวประมาณ 1 นาทีเมื่อพูดจริง (150-170 คำ) จากข้อมูลนี้:\n\n'
+    + 'ชื่อ/คณะที่สมัคร: ' + name + '\n\n'
+    + 'เรื่องราวแบบ STAR:\n'
+    + '- สถานการณ์: ' + s + '\n'
+    + '- หน้าที่/เป้าหมาย: ' + t + '\n'
+    + '- สิ่งที่ลงมือทำ: ' + a + '\n'
+    + '- ผลลัพธ์: ' + r + '\n\n'
+    + 'สิ่งที่รักจะทำจริงๆ: ' + passion + '\n'
+    + 'สิ่งที่คณะนี้เชี่ยวชาญ/ต้องการ: ' + fit + '\n'
+    + 'เหตุผลที่อยากเข้าคณะนี้ตอนนี้: ' + why + '\n\n'
+    + 'ข้อกำหนดในการเขียน:\n'
+    + '1. เริ่มจากผลงาน/ประสบการณ์ (ใช้เรื่อง STAR ข้างบน) แล้วค่อยเชื่อมไปสิ่งที่รัก และปิดท้ายด้วยเหตุผลที่เลือกคณะนี้\n'
+    + '2. น้ำเสียงจริงใจ มั่นใจ เป็นธรรมชาติ ไม่ใช่ท่องจำ\n'
+    + '3. ความยาวพอดี 1 นาทีเมื่อพูดออกเสียงจริง\n'
+    + '4. เขียนออกมา 2 แบบที่ต่างกันเล็กน้อย เพื่อให้ฉันเลือกและผสมเป็นของตัวเอง';
+}
+
+if(genBtn){
+  genBtn.addEventListener('click', ()=>{
+    promptOut.value = buildPrompt();
+    copyBtn.disabled = false;
+    copyStatus.classList.remove('show');
+  });
+  copyBtn.addEventListener('click', async ()=>{
+    try{
+      await navigator.clipboard.writeText(promptOut.value);
+    }catch(e){
+      promptOut.removeAttribute('readonly');
+      promptOut.select();
+      document.execCommand('copy');
+      promptOut.setAttribute('readonly','');
+    }
+    copyStatus.classList.add('show');
+    setTimeout(()=>copyStatus.classList.remove('show'), 1800);
+  });
+}
 </script>
 
 <!--
