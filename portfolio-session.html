@@ -80,11 +80,11 @@ body{
 .shot svg{width:1.6cqw; height:1.6cqw; min-width:16px; min-height:16px}
 .shot span{font-size:.72cqw; font-weight:500}
 
-/* connector arrows between adjacent cards in a row */
+/* connector arrows between adjacent cards in a row — anchored to the number-badge row */
 .step:not(:nth-child(4)):not(:nth-child(8))::after{
-  content:""; position:absolute; top:50%; right:-1.35cqw; width:1.1cqw; height:1.1cqw;
+  content:""; position:absolute; top:2.1cqw; right:-1.35cqw; width:1cqw; height:1cqw;
   transform:translateY(-50%) rotate(45deg);
-  border-top:2.5px solid #C7CCD6; border-right:2.5px solid #C7CCD6;
+  border-top:3px solid var(--red); border-right:3px solid var(--red);
 }
 
 /* ---------- footer / nav (persistent overlay, one per deck) ---------- */
@@ -103,17 +103,8 @@ body{
 .nav button svg{width:1cqw; height:1cqw; min-width:12px; min-height:12px}
 .counter{font-size:.85cqw; color:var(--slate); min-width:2.4cqw; text-align:center}
 
-/* ---------- stakeholder cards ---------- */
-.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:1.4cqw; flex:1; align-content:center}
-.stake{background:var(--panel); border:1px solid var(--rule); border-radius:.7cqw; padding:1.6cqw 1.3cqw; text-align:center}
-.stake-icon{width:3.2cqw; height:3.2cqw; min-width:30px; min-height:30px; margin:0 auto .8cqw; border-radius:50%; background:#fff; border:1.5px solid var(--rule); display:flex; align-items:center; justify-content:center; color:var(--red)}
-.stake-icon svg{width:1.6cqw; height:1.6cqw; min-width:16px; min-height:16px}
-.stake-title{font-size:1.25cqw; font-weight:700; color:var(--ink); margin-bottom:.4cqw}
-.stake-desc{font-size:.95cqw; color:var(--slate); line-height:1.45}
-.keymsg{margin-top:1.6cqw; background:var(--black); color:#fff; text-align:center; padding:1.1cqw 1.6cqw; border-radius:.6cqw; font-size:1.15cqw; font-weight:600; line-height:1.5}
-.keymsg b{color:var(--gold)}
-
 /* ---------- STAR legend + compare ---------- */
+.slide-intro{font-size:1.05cqw; color:var(--slate); line-height:1.6; margin-bottom:1.4cqw; max-width:90%}
 .legend-row{display:flex; gap:1cqw; margin-bottom:1.6cqw}
 .legend-chip{flex:1; display:flex; align-items:center; gap:.6cqw; background:var(--panel); border:1px solid var(--rule); border-radius:.5cqw; padding:.7cqw .9cqw}
 .legend-chip .ltr{width:1.8cqw; height:1.8cqw; min-width:18px; min-height:18px; border-radius:50%; color:#fff; font-weight:700; font-size:.95cqw; display:flex; align-items:center; justify-content:center; flex-shrink:0}
@@ -134,7 +125,7 @@ body{
 .star-line p{margin:0; font-size:1cqw; color:var(--ink); line-height:1.5}
 
 /* ---------- portfolio snapshot layout ---------- */
-.snap-layout{flex:1; display:grid; grid-template-columns:1.05fr 1fr; gap:1.5cqw; min-height:0}
+.snap-layout{flex:none; height:28cqw; display:grid; grid-template-columns:1.05fr 1fr; gap:1.5cqw; min-height:0}
 .snap-img-wrap{background:var(--panel); border:1px solid var(--rule); border-radius:.6cqw; overflow:hidden; display:flex}
 .snap-img-wrap img{width:100%; height:100%; object-fit:contain}
 .tag-list{display:flex; flex-direction:column; gap:.7cqw; justify-content:center}
@@ -211,8 +202,8 @@ body{
 .lab-hint{font-size:.82cqw; color:var(--slate); line-height:1.5}
 
 /* ---------- profile / cover ---------- */
-.profile-layout{flex:1; display:grid; grid-template-columns:1fr 1.15fr; gap:2.2cqw; min-height:0}
-.profile-left{display:flex; flex-direction:column; gap:1.3cqw; min-height:0}
+.profile-layout{flex:1; display:grid; grid-template-columns:1fr 1.15fr; gap:2.2cqw; min-height:0; align-items:center}
+.profile-left{display:flex; flex-direction:column; gap:1.8cqw; min-height:0}
 .profile-photo{
   width:11cqw; height:11cqw; min-width:80px; min-height:80px; align-self:flex-start;
   border:1.5px dashed #B9C0CC; border-radius:.6cqw; background:var(--panel);
@@ -220,14 +211,12 @@ body{
 }
 .profile-photo svg{width:2.4cqw; height:2.4cqw; min-width:22px; min-height:22px}
 .profile-photo span{font-size:.78cqw; font-weight:500; text-align:center; padding:0 .5cqw}
-.logo-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:.6cqw}
+.logo-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:.8cqw}
 .logo-tile{
-  background:var(--panel); border:1px solid var(--rule); border-radius:.45cqw; padding:.55cqw .75cqw;
-  display:flex; align-items:center; min-height:2.5cqw;
+  background:#fff; border:1px solid var(--rule); border-radius:.5cqw; padding:.9cqw .8cqw;
+  display:flex; align-items:center; justify-content:center; min-height:4cqw;
 }
-.logo-tile span{font-size:.76cqw; font-weight:700; color:var(--ink); line-height:1.25}
-.logo-tile.img{background:#fff; justify-content:center}
-.logo-tile.img img{max-width:88%; max-height:2.6cqw; object-fit:contain}
+.logo-tile.img img{max-width:85%; max-height:3.2cqw; object-fit:contain}
 .profile-right{display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:.5cqw}
 .profile-right .pr-eyebrow{font-size:1cqw; font-weight:600; color:var(--slate); letter-spacing:.06em; text-transform:uppercase}
 .profile-right h1{margin:0; font-size:3.6cqw; font-weight:700; color:var(--black); line-height:1.1}
@@ -241,6 +230,34 @@ body{
 .agenda-item .num{font-size:2.3cqw; font-weight:700; color:var(--rule); min-width:3.4cqw}
 .agenda-item .a-title{font-size:1.35cqw; font-weight:700; color:var(--ink); margin-bottom:.25cqw}
 .agenda-item .a-desc{font-size:.95cqw; color:var(--slate)}
+
+/* ---------- draft outline slide ---------- */
+.draft-badge{
+  align-self:flex-start; background:none; border:1.5px dashed var(--slate); color:var(--slate);
+  font-weight:700; font-size:.85cqw; padding:.35cqw .9cqw; border-radius:99px; margin-bottom:1.2cqw;
+  letter-spacing:.05em; text-transform:uppercase;
+}
+.draft-grid{flex:1; display:grid; grid-template-columns:1fr 1fr; gap:1.1cqw; align-content:center}
+.draft-item{
+  border:1.5px dashed #C7CCD6; border-radius:.6cqw; padding:1cqw 1.2cqw; background:#FAFBFC;
+  display:flex; align-items:center; gap:.8cqw;
+}
+.draft-item .dot{width:.6cqw; height:.6cqw; min-width:6px; min-height:6px; border-radius:50%; background:var(--red); flex-shrink:0}
+.draft-item p{margin:0; font-size:1.05cqw; color:var(--ink); font-weight:600; line-height:1.4}
+
+/* ---------- faculty comparison matrix ---------- */
+.matrix{flex:1; display:grid; grid-template-columns:1.05fr 1fr 1fr 1fr; grid-template-rows:auto repeat(3,1fr); gap:.5cqw; min-height:0}
+.mx-cell{background:var(--panel); border:1px solid var(--rule); border-radius:.45cqw; padding:.65cqw .8cqw; display:flex; flex-direction:column; justify-content:center}
+.mx-corner{background:transparent; border:none}
+.mx-head{background:var(--black); color:#fff; text-align:center}
+.mx-head .t{font-size:.98cqw; font-weight:700}
+.mx-head .s{display:block; font-size:.7cqw; font-weight:500; color:#AEB6C2; margin-top:.15cqw}
+.mx-row-label{background:#fff; border:none; padding-left:0}
+.mx-row-label .t{font-size:.92cqw; font-weight:700; color:var(--ink)}
+.mx-row-label .s{display:block; font-size:.68cqw; font-weight:500; color:var(--slate); margin-top:.1cqw}
+.mx-cell ul{margin:0; padding-left:1cqw; font-size:.76cqw; color:var(--ink); line-height:1.55}
+.mx-cell ul li{margin-bottom:.1cqw}
+.mx-cell.accent{border-top:2.5px solid var(--red)}
 
 @media (prefers-color-scheme: dark){
   body{background:#000}
@@ -266,11 +283,6 @@ body{
             <div class="logo-tile img"><img src="assets/logos/tidb.png" alt="TiDB, powered by PingCAP"></div>
             <div class="logo-tile img"><img src="assets/logos/ted.jpg" alt="TEDxBangkok Youth"></div>
             <div class="logo-tile img"><img src="assets/logos/bcc.png" alt="Bangkok Christian College"></div>
-            <div class="logo-tile"><span>J-MAT</span></div>
-            <div class="logo-tile"><span>Intania Open Innovation Club</span></div>
-            <div class="logo-tile"><span>KMUTT Hatch</span></div>
-            <div class="logo-tile"><span>Green Youth Thailand</span></div>
-            <div class="logo-tile"><span>Engineering Student Committee CU</span></div>
           </div>
         </div>
         <div class="profile-right">
@@ -397,37 +409,62 @@ body{
       </div>
     </section>
 
-    <section class="slide" data-title="ทำไมต้องเล่าเรื่องให้เป็น">
+    <section class="slide" data-title="รู้จัก TCAS ให้ลึกขึ้น">
       <div class="slide-head">
         <div class="brand">
           <div class="mark">A</div>
           <div class="name">THE PORTFOLIO For University</div>
         </div>
         <div class="slide-title">
-          ผลงานเดียวกัน แต่เล่าไม่เหมือนกัน
-          <small>ก่อนเริ่มพอร์ต ต้องรู้ก่อนว่าใครอ่าน</small>
+          รู้จัก TCAS ให้ลึกขึ้น
+          <small>ระบบเดียว หลายเส้นทางเข้ามหาวิทยาลัย</small>
         </div>
       </div>
 
-      <div class="grid3">
-        <div class="stake">
-          <div class="stake-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.5 3-5.5 7-5.5s7 2 7 5.5"/></svg></div>
-          <div class="stake-title">ผู้สัมภาษณ์</div>
-          <div class="stake-desc">อยากรู้จัก "ตัวตน" คุณ ไม่ใช่แค่รางวัล</div>
+      <div class="draft-badge">Draft — หัวข้อที่จะพูดถึง</div>
+      <div class="draft-grid">
+        <div class="draft-item"><div class="dot"></div><p>TCAS คืออะไร มีกี่รอบ</p></div>
+        <div class="draft-item"><div class="dot"></div><p>แต่ละรอบใช้เกณฑ์อะไรตัดสิน</p></div>
+        <div class="draft-item"><div class="dot"></div><p>สมัครได้หลายรอบ แต่ยืนยันสิทธิ์ได้ครั้งเดียว</p></div>
+        <div class="draft-item"><div class="dot"></div><p>ปฏิทิน TCAS70 คร่าวๆ</p></div>
+        <div class="draft-item"><div class="dot"></div><p>ความเข้าใจผิดที่พบบ่อย</p></div>
+        <div class="draft-item"><div class="dot"></div><p>Portfolio ต่างจากรอบอื่นยังไง</p></div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="สามผู้เล่นที่ต้องเข้าใจ">
+      <div class="slide-head">
+        <div class="brand">
+          <div class="mark">A</div>
+          <div class="name">THE PORTFOLIO For University</div>
         </div>
-        <div class="stake">
-          <div class="stake-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg></div>
-          <div class="stake-title">คณะที่สมัคร</div>
-          <div class="stake-desc">มองหาคนที่เข้ากับหลักสูตรได้จริง</div>
-        </div>
-        <div class="stake">
-          <div class="stake-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></div>
-          <div class="stake-title">ระบบ TCAS</div>
-          <div class="stake-desc">กติกากลางที่ทุกคนต้องผ่านเท่ากันหมด</div>
+        <div class="slide-title">
+          สามผู้เล่นที่ต้องเข้าใจ
+          <small>เทียบ 3 คณะตัวอย่าง — เขาดูอะไรกันบ้าง</small>
         </div>
       </div>
 
-      <div class="keymsg">หน้าที่ของพอร์ต คือเปลี่ยน <b>"ผลงานที่ทำมา"</b> ให้เป็น <b>"เรื่องเล่าที่พิสูจน์ศักยภาพ"</b></div>
+      <div class="matrix">
+        <div class="mx-cell mx-corner"></div>
+        <div class="mx-cell mx-head"><div class="t">วิศวกรรมศาสตร์</div><span class="s">KMUTNB</span></div>
+        <div class="mx-cell mx-head"><div class="t">ISE</div><span class="s">จุฬาฯ · นานาชาติ</span></div>
+        <div class="mx-cell mx-head"><div class="t">BBA</div><span class="s">จุฬาฯ</span></div>
+
+        <div class="mx-cell mx-row-label"><div class="t">ระบบ TCAS</div><span class="s">คะแนน/เกณฑ์ที่ต้องยื่น</span></div>
+        <div class="mx-cell"><ul><li>GPAX สายวิทย์-คณิต</li><li>หน่วยกิตคณิต/วิทย์ขั้นต่ำ</li></ul></div>
+        <div class="mx-cell"><ul><li>IELTS 6.0+ หรือเทียบเท่า</li><li>SAT Math / ACT</li></ul></div>
+        <div class="mx-cell"><ul><li>คะแนนภาษาอังกฤษ</li><li>กิจกรรมผู้นำ/ธุรกิจ</li></ul></div>
+
+        <div class="mx-cell mx-row-label"><div class="t">คณะที่สมัคร</div><span class="s">คุณสมบัติที่มองหา</span></div>
+        <div class="mx-cell"><ul><li>ทักษะแก้ปัญหาเชิงเทคนิค</li><li>ผลงานสิ่งประดิษฐ์/วิทยาศาสตร์</li></ul></div>
+        <div class="mx-cell"><ul><li>โปรเจกต์ข้ามศาสตร์</li><li>มุมมองระดับนานาชาติ</li></ul></div>
+        <div class="mx-cell"><ul><li>วิสัยทัศน์ธุรกิจ</li><li>ภาวะผู้นำ</li></ul></div>
+
+        <div class="mx-cell mx-row-label"><div class="t">ผู้สัมภาษณ์</div><span class="s">อยากได้ยินอะไรจากคุณ</span></div>
+        <div class="mx-cell"><ul><li>อธิบายหลักการที่ทำจริงได้ลึก</li><li>ถามพื้นฐานคณิต/ฟิสิกส์</li></ul></div>
+        <div class="mx-cell"><ul><li>สัมภาษณ์เป็นภาษาอังกฤษ</li><li>คิดวิเคราะห์สด</li></ul></div>
+        <div class="mx-cell"><ul><li>ไหวพริบผ่าน Case Study สด</li><li>บุคลิกและการสื่อสาร</li></ul></div>
+      </div>
     </section>
 
     <section class="slide" data-title="STAR Method">
@@ -441,6 +478,8 @@ body{
           <small>SITUATION · TASK · ACTION · RESULT</small>
         </div>
       </div>
+
+      <div class="slide-intro">STAR Method คือเทคนิคเล่าเรื่องที่ใช้กันทั้งในการสัมภาษณ์งานระดับโลกและพอร์ตโฟลิโอ ช่วยเปลี่ยนผลงานที่ทำมาให้กลายเป็นเรื่องที่น่าจดจำและวัดผลได้ ไม่ใช่แค่ลิสต์รางวัล</div>
 
       <div class="legend-row">
         <div class="legend-chip"><div class="ltr chip-s">S</div><div class="lx">Situation<b>สถานการณ์</b></div></div>
@@ -636,7 +675,7 @@ body{
     </section>
 
     <div class="slide-foot">
-      <div class="foot-note">DEKSHOWPORT × True Digital Academy</div>
+      <div class="foot-note">True Digital Academy</div>
       <div class="nav">
         <button id="prevBtn" aria-label="ก่อนหน้า"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
         <div class="counter" id="counter">1 / 1</div>
