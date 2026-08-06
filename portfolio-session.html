@@ -210,6 +210,28 @@ body{
 .copy-status.show{opacity:1}
 .lab-hint{font-size:.82cqw; color:var(--slate); line-height:1.5}
 
+/* ---------- profile / cover ---------- */
+.profile-layout{flex:1; display:grid; grid-template-columns:1fr 1.15fr; gap:2.2cqw; min-height:0}
+.profile-left{display:flex; flex-direction:column; gap:1.3cqw; min-height:0}
+.profile-photo{
+  width:11cqw; height:11cqw; min-width:80px; min-height:80px; align-self:flex-start;
+  border:1.5px dashed #B9C0CC; border-radius:.6cqw; background:var(--panel);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4cqw; color:#9AA3B2;
+}
+.profile-photo svg{width:2.4cqw; height:2.4cqw; min-width:22px; min-height:22px}
+.profile-photo span{font-size:.78cqw; font-weight:500; text-align:center; padding:0 .5cqw}
+.logo-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:.6cqw}
+.logo-tile{
+  background:var(--panel); border:1px solid var(--rule); border-radius:.45cqw; padding:.55cqw .75cqw;
+  display:flex; align-items:center; min-height:2.5cqw;
+}
+.logo-tile span{font-size:.76cqw; font-weight:700; color:var(--ink); line-height:1.25}
+.profile-right{display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:.5cqw}
+.profile-right .pr-eyebrow{font-size:1cqw; font-weight:600; color:var(--slate); letter-spacing:.06em; text-transform:uppercase}
+.profile-right h1{margin:0; font-size:3.6cqw; font-weight:700; color:var(--black); line-height:1.1}
+.profile-right h1 .accent{display:block; color:var(--red)}
+.profile-right .pr-sub{font-size:1.05cqw; color:var(--slate); margin-top:.5cqw}
+
 /* ---------- agenda ---------- */
 .agenda-list{flex:1; display:flex; flex-direction:column; justify-content:center; gap:1.3cqw}
 .agenda-item{display:flex; align-items:center; gap:1.4cqw; padding-bottom:1.3cqw; border-bottom:1px solid var(--rule)}
@@ -228,7 +250,35 @@ body{
 <div class="stage">
   <div class="deck" id="deck">
 
-    <section class="slide active" data-title="Agenda">
+    <section class="slide active" data-title="Profile">
+      <div class="profile-layout">
+        <div class="profile-left">
+          <div class="profile-photo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.87 3.13-6.5 7-6.5s7 2.63 7 6.5"/></svg>
+            <span>แนบรูปโปรไฟล์</span>
+          </div>
+          <div class="logo-grid">
+            <div class="logo-tile"><span>Chulalongkorn University</span></div>
+            <div class="logo-tile"><span>Michelin</span></div>
+            <div class="logo-tile"><span>BASE Playhouse</span></div>
+            <div class="logo-tile"><span>J-MAT</span></div>
+            <div class="logo-tile"><span>TiDB · PingCAP</span></div>
+            <div class="logo-tile"><span>Intania Open Innovation Club</span></div>
+            <div class="logo-tile"><span>TEDxBangkok Youth</span></div>
+            <div class="logo-tile"><span>KMUTT Hatch</span></div>
+            <div class="logo-tile"><span>Green Youth Thailand</span></div>
+            <div class="logo-tile"><span>Engineering Student Committee CU</span></div>
+          </div>
+        </div>
+        <div class="profile-right">
+          <div class="pr-eyebrow">Daranpop Songsawas</div>
+          <h1>THE PORTFOLIO<span class="accent">For University</span></h1>
+          <div class="pr-sub">Portfolio Workshop for TCAS70</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Agenda">
       <div class="slide-head">
         <div class="brand">
           <div class="mark">A</div>
