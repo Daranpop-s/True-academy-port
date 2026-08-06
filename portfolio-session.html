@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE PORTFOLIO For University — Session Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#E01E26; --black:#141414; --ink:#1E1E1E; --slate:#5C6470;
+  --panel:#F4F5F7; --rule:#E3E6EC; --gold:#F2C230; --paper:#FFFFFF;
+  --font:"IBM Plex Sans Thai","Noto Sans Thai","Leelawadee UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  background:#0E0E10; font-family:var(--font);
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+
+/* ---------- 16:9 stage ---------- */
+.stage{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; padding:2vh 2vw}
+.deck{
+  position:relative; background:var(--paper);
+  aspect-ratio:16/9; width:100%; max-width:calc(96vh * 16 / 9); max-height:96vh;
+  box-shadow:0 30px 80px rgba(0,0,0,.5); border-radius:6px; overflow:hidden;
+  container-type:inline-size;
+}
+
+.slide{
+  position:absolute; inset:0; display:none; flex-direction:column;
+  padding:3.2cqw 3.6cqw 2.6cqw;
+}
+.slide.active{display:flex}
+
+/* ---------- header ---------- */
+.slide-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:2.2cqw}
+.brand{display:flex; align-items:center; gap:.7cqw}
+.brand .mark{
+  width:2.6cqw; height:2.6cqw; min-width:22px; min-height:22px; background:var(--gold);
+  border-radius:.4cqw; display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:1.1cqw; color:var(--black);
+}
+.brand .name{font-size:1.05cqw; font-weight:600; color:var(--slate); letter-spacing:.02em}
+.slide-title{font-size:1.9cqw; font-weight:700; color:var(--black); text-align:right; line-height:1.25}
+.slide-title small{display:block; font-size:1cqw; font-weight:500; color:var(--red); margin-top:.2cqw}
+
+/* ---------- flow grid ---------- */
+.flow{
+  flex:1; display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(2,1fr);
+  gap:1.6cqw 1.1cqw; position:relative;
+}
+.step{
+  position:relative; background:var(--panel); border:1px solid var(--rule); border-radius:.6cqw;
+  padding:1.1cqw 1.1cqw .9cqw; display:flex; flex-direction:column;
+}
+.step .num{
+  width:2cqw; height:2cqw; min-width:18px; min-height:18px; border-radius:50%;
+  background:var(--black); color:#fff; font-weight:700; font-size:1cqw;
+  display:flex; align-items:center; justify-content:center; margin-bottom:.6cqw;
+}
+.step.highlight .num{background:var(--red)}
+.step .label{font-size:1.15cqw; font-weight:700; color:var(--ink); line-height:1.3; margin-bottom:.3cqw}
+.step .desc{font-size:.92cqw; color:var(--slate); line-height:1.4; margin-bottom:.7cqw}
+.badge{
+  position:absolute; top:-.7cqw; right:.8cqw; background:var(--red); color:#fff;
+  font-size:.72cqw; font-weight:700; padding:.25cqw .6cqw; border-radius:99px;
+  letter-spacing:.02em; box-shadow:0 2px 6px rgba(224,30,38,.4);
+}
+
+/* screenshot placeholder */
+.shot{
+  margin-top:auto; border:1.5px dashed #B9C0CC; border-radius:.45cqw; background:#FFFFFF;
+  flex:1; min-height:5.2cqw; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:.35cqw; color:#9AA3B2;
+}
+.shot svg{width:1.6cqw; height:1.6cqw; min-width:16px; min-height:16px}
+.shot span{font-size:.72cqw; font-weight:500}
+
+/* connector arrows between adjacent cards in a row */
+.step:not(:nth-child(4)):not(:nth-child(8))::after{
+  content:""; position:absolute; top:50%; right:-1.35cqw; width:1.1cqw; height:1.1cqw;
+  transform:translateY(-50%) rotate(45deg);
+  border-top:2.5px solid #C7CCD6; border-right:2.5px solid #C7CCD6;
+}
+
+/* ---------- footer / nav ---------- */
+.slide-foot{display:flex; align-items:center; justify-content:space-between; margin-top:1.6cqw}
+.foot-note{font-size:.85cqw; color:var(--slate)}
+.nav{display:flex; align-items:center; gap:.8cqw}
+.nav button{
+  width:2.2cqw; height:2.2cqw; min-width:26px; min-height:26px; border-radius:50%; border:1px solid var(--rule);
+  background:#fff; color:var(--black); cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
+.nav button:disabled{opacity:.35; cursor:default}
+.nav button svg{width:1cqw; height:1cqw; min-width:12px; min-height:12px}
+.counter{font-size:.85cqw; color:var(--slate); min-width:2.4cqw; text-align:center}
+
+@media (prefers-color-scheme: dark){
+  body{background:#000}
+}
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="deck" id="deck">
+
+    <section class="slide active" data-title="ขั้นตอนสมัคร Portfolio">
+      <div class="slide-head">
+        <div class="brand">
+          <div class="mark">A</div>
+          <div class="name">THE PORTFOLIO For University</div>
+        </div>
+        <div class="slide-title">
+          ขั้นตอนสมัคร Portfolio ให้ติดมหาวิทยาลัย
+          <small>จากเปิดบัญชีจนถึงยืนยันสิทธิ์ — TCAS70</small>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="step">
+          <div class="num">1</div>
+          <div class="label">เปิดบัญชี MyTCAS + สร้าง TCASFolio</div>
+          <div class="desc">ลงทะเบียนกลาง กรอกเกรด คะแนนสอบ กิจกรรม ผลงาน</div>
+          <div class="shot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2.5h5L16 6"/></svg><span>แนบภาพขั้นตอนนี้</span></div>
+        </div>
+
+        <div class="step">
+          <div class="num">2</div>
+          <div class="label">เลือกคณะ เช็กเกณฑ์รับสมัคร</div>
+          <div class="desc">แต่ละมหาวิทยาลัยเปิดรอบ 1 ไม่พร้อมกัน เช็กเกณฑ์เฉพาะที่นั่น</div>
+          <div class="shot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2.5h5L16 6"/></svg><span>แนบภาพขั้นตอนนี้</span></div>
+        </div>
+
+        <div class="step">
+          <div class="num">3</div>
+          <div class="label">สมัครและจ่ายค่าสมัคร</div>
+          <div class="desc">ทำบนเว็บของมหาวิทยาลัยเอง แยกจากระบบ mytcas.com</div>
+          <div class="shot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2.5h5L16 6"/></svg><span>แนบภาพขั้นตอนนี้</span></div>
+        </div>
+
+        <div class="step highlight">
+          <div class="badge">ใหม่ TCAS70</div>
+          <div class="num">4</div>
+          <div class="label">ยื่นพอร์ตผ่าน TCASFolio</div>
+          <div class="desc">บังคับใช้ระบบกลางของ ทปอ. แทนไฟล์ PDF แบบเดิม</div>
+          <div class="shot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2.5h5L16 6"/></svg><span>แนบภาพขั้นตอนนี้</span></div>
+        </div>
+
+        <div class="step">
+          <div class="num">5</div>
+          <div class="label">รอประกาศรายชื่อสัมภาษณ์</div>
+          <div class="desc">มหาวิทยาลัยคัดจากพอร์ต ประกาศผู้มีสิทธิ์เข้าสัมภาษณ์</div>
+          <div class="shot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2.5h5L16 6"/></svg><span>แนบภาพขั้นตอนนี้</span></div>
+        </div>
+
+        <div class="step">
+          <div class="num">6</div>
+          <div class="label">เข้าสัมภาษณ์พร้อมเอกสาร</div>
+          <div class="desc">เตรียมเอกสารตัวจริง-สำเนาให้ครบตามประกาศ</div>
+          <div class="shot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2.5h5L16 6"/></svg><span>แนบภาพขั้นตอนนี้</span></div>
+        </div>
+
+        <div class="step">
+          <div class="num">7</div>
+          <div class="label">รอประกาศผลรอบสุดท้าย</div>
+          <div class="desc">มหาวิทยาลัยประกาศรายชื่อผู้ผ่านการคัดเลือก</div>
+          <div class="shot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2.5h5L16 6"/></svg><span>แนบภาพขั้นตอนนี้</span></div>
+        </div>
+
+        <div class="step">
+          <div class="num">8</div>
+          <div class="label">ยืนยันสิทธิ์บน mytcas.com</div>
+          <div class="desc">ยืนยัน = จบ / ไม่ยืนยันหรือสละสิทธิ์ = ไปต่อรอบ 2-3 ได้</div>
+          <div class="shot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2.5h5L16 6"/></svg><span>แนบภาพขั้นตอนนี้</span></div>
+        </div>
+      </div>
+
+      <div class="slide-foot">
+        <div class="foot-note">DEKSHOWPORT × True Digital Academy</div>
+        <div class="nav">
+          <button id="prevBtn" aria-label="ก่อนหน้า"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="counter" id="counter">1 / 1</div>
+          <button id="nextBtn" aria-label="ถัดไป"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+const slides = Array.from(document.querySelectorAll('.slide'));
+let i = 0;
+const counter = document.getElementById('counter');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+function render(){
+  slides.forEach((s,idx)=>s.classList.toggle('active', idx===i));
+  counter.textContent = (i+1)+' / '+slides.length;
+  prevBtn.disabled = i===0;
+  nextBtn.disabled = i===slides.length-1;
+}
+prevBtn.addEventListener('click', ()=>{ if(i>0){ i--; render(); } });
+nextBtn.addEventListener('click', ()=>{ if(i<slides.length-1){ i++; render(); } });
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='ArrowRight'){ if(i<slides.length-1){ i++; render(); } }
+  if(e.key==='ArrowLeft'){ if(i>0){ i--; render(); } }
+});
+render();
+</script>
+
+<!--
+Sources for the process steps (for internal reference, not shown on slide):
+- TCASFolio open date + system: https://www.smartmathpro.com/article/what-is-tcasfolio/ , https://www.eduzones.com/2026/08/04/tcasfolio/
+- Chula TCAS70 mandating TCASFolio for Portfolio round: https://www.eduzones.com/2026/07/23/cu-tcasfolio/
+- General TCAS70 round calendar: https://dreamnesthub.com/tcas70
+- Confirm/decline seat mechanics: standard TCAS ทปอ. process (ยืนยันสิทธิ์ / สละสิทธิ์ on mytcas.com)
+-->
+</body>
+</html>
