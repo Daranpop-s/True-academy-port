@@ -206,11 +206,9 @@ body{
 .profile-left{display:flex; flex-direction:column; gap:1.8cqw; min-height:0}
 .profile-photo{
   width:11cqw; height:11cqw; min-width:80px; min-height:80px; align-self:flex-start;
-  border:1.5px dashed #B9C0CC; border-radius:.6cqw; background:var(--panel);
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4cqw; color:#9AA3B2;
+  border-radius:.6cqw; background:var(--panel); overflow:hidden;
 }
-.profile-photo svg{width:2.4cqw; height:2.4cqw; min-width:22px; min-height:22px}
-.profile-photo span{font-size:.78cqw; font-weight:500; text-align:center; padding:0 .5cqw}
+.profile-photo img{width:100%; height:100%; object-fit:cover; display:block}
 .logo-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:.8cqw}
 .logo-tile{
   background:#fff; border:1px solid var(--rule); border-radius:.5cqw; padding:.9cqw .8cqw;
@@ -273,8 +271,7 @@ body{
       <div class="profile-layout">
         <div class="profile-left">
           <div class="profile-photo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.87 3.13-6.5 7-6.5s7 2.63 7 6.5"/></svg>
-            <span>แนบรูปโปรไฟล์</span>
+            <img src="assets/profile-photo.jpg" alt="Daranpop Songsawas">
           </div>
           <div class="logo-grid">
             <div class="logo-tile img"><img src="assets/logos/chula.png" alt="Chulalongkorn University"></div>
