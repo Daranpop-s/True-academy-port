@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>รอบ Portfolio TCAS70 — คู่มือสำหรับผู้ปกครอง</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Sans+Thai+Looped:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --royal:#0052DF; --azure:#1B79DA; --sky:#3292E0; --mist:#72BCE8;
+  --navy:#1B3B61; --ink:#0F2439; --slate:#5A7292;
+  --coral:#FC501C; --ember:#EC583C; --amber:#E8A054;
+  --paper:#FFFFFF; --panel:#F3F7FC; --rule:#DCE6F2;
+  --display:"IBM Plex Sans Thai","Noto Sans Thai","Leelawadee UI","Thonburi",system-ui,sans-serif;
+  --body:"IBM Plex Sans Thai Looped","IBM Plex Sans Thai","Noto Sans Thai Looped","Noto Sans Thai","Leelawadee UI","Thonburi",system-ui,sans-serif;
+  --rail:150px; --gap:44px; --maxw:1080px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:16.5px; line-height:1.78;
+  font-feature-settings:"liga" 1;
+}
+h1,h2,h3,h4,.disp{font-family:var(--display); font-weight:600; line-height:1.32; letter-spacing:-0.005em}
+p{margin:0 0 1.05em}
+a{color:var(--royal)}
+strong{font-weight:600; color:var(--navy)}
+
+/* ---------- grain + gradient atmosphere ---------- */
+.grain{position:absolute; inset:0; pointer-events:none; opacity:.55; mix-blend-mode:overlay}
+
+/* ---------- shell ---------- */
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 26px}
+.sheet{display:grid; grid-template-columns:var(--rail) 1fr; gap:var(--gap); align-items:start}
+.rail{position:sticky; top:26px; padding-top:6px}
+.rail .num{font-family:var(--display); font-weight:700; font-size:40px; line-height:1; color:var(--mist); font-variant-numeric:tabular-nums}
+.rail .tag{font-family:var(--display); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--slate); margin-top:8px}
+.rail .when{margin-top:12px; font-family:var(--display); font-size:13px; color:var(--coral); font-weight:600; border-top:2px solid var(--coral); padding-top:8px; display:inline-block}
+
+/* ---------- hero ---------- */
+.hero{position:relative; overflow:hidden; color:#fff; padding:64px 0 0}
+.hero .bg{position:absolute; inset:0; background:
+   radial-gradient(58% 62% at 74% 22%, rgba(252,80,28,.92) 0%, rgba(232,160,84,.55) 42%, rgba(27,121,218,0) 72%),
+   radial-gradient(70% 78% at 22% 74%, rgba(114,188,232,.75) 0%, rgba(27,121,218,0) 68%),
+   linear-gradient(148deg,#1B79DA 0%,#0052DF 52%,#0140A8 100%);}
+.hero .wrap{position:relative}
+.eyebrow{font-family:var(--display); font-size:12.5px; letter-spacing:.2em; text-transform:uppercase; opacity:.88}
+.hero h1{font-size:clamp(38px,6.4vw,66px); font-weight:700; margin:16px 0 10px; letter-spacing:-.02em}
+.hero h1 em{font-style:normal; color:#FFD9AC}
+.hero .lede{font-size:19px; max-width:52ch; opacity:.95; margin-bottom:34px}
+.logoslot{display:inline-flex; align-items:center; gap:10px; border:1px dashed rgba(255,255,255,.5); border-radius:6px; padding:8px 14px; font-family:var(--display); font-size:12px; letter-spacing:.08em; opacity:.75; margin-bottom:30px}
+
+/* ---------- signature: status clock ---------- */
+.clock{background:rgba(255,255,255,.97); color:var(--ink); border-radius:14px 14px 0 0; padding:26px 30px 30px; margin-top:8px; box-shadow:0 -2px 0 rgba(255,255,255,.35)}
+.clock h2{font-size:15px; letter-spacing:.03em; color:var(--slate); font-weight:600; margin:0 0 4px}
+.clock .today{font-family:var(--display); font-size:30px; font-weight:700; color:var(--navy); margin-bottom:18px}
+.spine{position:relative; height:8px; background:var(--rule); border-radius:99px; margin:26px 0 34px}
+.spine .fill{position:absolute; inset:0 auto 0 0; background:linear-gradient(90deg,var(--royal),var(--coral)); border-radius:99px}
+.spine .pin{position:absolute; top:50%; width:15px; height:15px; margin:-7.5px 0 0 -7.5px; border-radius:50%; background:#fff; border:3.5px solid var(--coral)}
+.next{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:10px; overflow:hidden}
+.next div{background:#fff; padding:16px 18px}
+.next .d{font-family:var(--display); font-weight:700; font-size:22px; color:var(--coral); font-variant-numeric:tabular-nums}
+.next .l{font-size:14px; color:var(--slate); line-height:1.55; margin-top:3px}
+
+/* ---------- sections ---------- */
+section{padding:56px 0; border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0}
+h2.sec{font-size:clamp(25px,3.2vw,34px); font-weight:700; color:var(--navy); margin:0 0 6px; letter-spacing:-.015em}
+.sub{color:var(--slate); font-size:15.5px; margin:0 0 26px}
+h3{font-size:20px; color:var(--navy); margin:34px 0 10px}
+h4{font-size:16.5px; color:var(--navy); margin:22px 0 6px}
+
+/* parent opener */
+.foryou{background:var(--panel); border-left:4px solid var(--sky); padding:16px 20px; border-radius:0 8px 8px 0; margin:0 0 26px; font-size:16px}
+.foryou b{font-family:var(--display); display:block; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--azure); margin-bottom:5px}
+
+/* alert */
+.alert{border:2px solid var(--coral); border-radius:10px; padding:18px 22px; margin:26px 0; background:#FFF6F2}
+.alert b{font-family:var(--display); color:var(--coral); display:block; margin-bottom:5px}
+
+.note{font-size:14.5px; color:var(--slate); border-top:1px dashed var(--rule); padding-top:12px; margin-top:22px}
+
+/* tables */
+table{width:100%; border-collapse:collapse; margin:20px 0; font-size:15.2px}
+caption{caption-side:top; text-align:left; font-family:var(--display); font-size:13px; color:var(--slate); padding-bottom:9px; letter-spacing:.02em}
+th,td{text-align:left; padding:11px 13px; border-bottom:1px solid var(--rule); vertical-align:top}
+thead th{background:var(--navy); color:#fff; font-family:var(--display); font-weight:600; font-size:13.5px; letter-spacing:.02em; border:0}
+thead th:first-child{border-radius:7px 0 0 0} thead th:last-child{border-radius:0 7px 0 0}
+tbody tr:nth-child(even){background:#FAFCFE}
+td.num,th.num{font-variant-numeric:tabular-nums; white-space:nowrap}
+.blank{color:var(--slate); font-style:italic; font-size:13.8px}
+.hot{color:var(--coral); font-weight:600}
+
+/* two-col compare */
+.duo{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--rule); border-radius:10px; overflow:hidden; margin:22px 0}
+.duo>div{padding:22px 24px}
+.duo>div:first-child{border-right:1px solid var(--rule); background:#FFFDF8}
+.duo h4{margin-top:0}
+.duo ul{margin:0; padding-left:18px}
+.duo li{margin-bottom:7px}
+
+/* flow */
+.flow{list-style:none; margin:22px 0; padding:0; counter-reset:f}
+.flow li{counter-increment:f; position:relative; padding:0 0 22px 52px; border-left:2px solid var(--rule); margin-left:15px}
+.flow li:last-child{border-left-color:transparent; padding-bottom:0}
+.flow li::before{content:counter(f); position:absolute; left:-16px; top:-2px; width:30px; height:30px; border-radius:50%; background:var(--royal); color:#fff; font-family:var(--display); font-weight:700; font-size:14px; display:grid; place-items:center}
+.flow b{font-family:var(--display); color:var(--navy)}
+
+/* canvas grid */
+.canvas{display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--rule); border-radius:10px; overflow:hidden; margin:22px 0}
+.canvas>div{padding:20px; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule)}
+.canvas>div:nth-child(3n){border-right:0}
+.canvas>div:nth-last-child(-n+3){border-bottom:0}
+.canvas h4{margin:0 0 8px; font-size:15px}
+.canvas p{font-size:14.6px; margin:0; color:var(--slate)}
+
+/* band */
+.band{position:relative; overflow:hidden; color:#fff; margin:56px 0; border-radius:14px}
+.band .bg{position:absolute; inset:0; background:
+   radial-gradient(60% 70% at 82% 26%, rgba(252,80,28,.85) 0%, rgba(27,121,218,0) 66%),
+   linear-gradient(120deg,#1B79DA,#0052DF 62%,#0140A8);}
+.band .in{position:relative; padding:38px 40px}
+.band h3{color:#fff; margin:0 0 10px; font-size:23px}
+.band p{margin:0; opacity:.95; max-width:66ch}
+.band .stat{font-family:var(--display); font-size:46px; font-weight:700; line-height:1; color:#FFD9AC; font-variant-numeric:tabular-nums}
+
+/* toolbar */
+.bar{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule)}
+.bar .in{max-width:var(--maxw); margin:0 auto; padding:11px 26px; display:flex; align-items:center; justify-content:space-between; gap:16px}
+.bar .who{font-family:var(--display); font-size:13.5px; color:var(--slate); letter-spacing:.02em}
+.btn{font-family:var(--display); font-weight:600; font-size:14.5px; border:0; border-radius:8px; padding:10px 20px; background:var(--coral); color:#fff; cursor:pointer}
+.btn:hover{background:var(--ember)}
+.btn:focus-visible{outline:3px solid var(--royal); outline-offset:2px}
+
+footer{background:var(--navy); color:#CFE0F2; padding:44px 0 54px; font-size:14.6px}
+footer a{color:#9FCBF0}
+footer h3{color:#fff; font-size:17px; margin:0 0 12px}
+footer ul{padding-left:18px; margin:0 0 18px}
+footer li{margin-bottom:6px}
+
+@media (max-width:820px){
+  .sheet{grid-template-columns:1fr; gap:18px}
+  .rail{position:static; display:flex; align-items:baseline; gap:12px}
+  .rail .num{font-size:26px} .rail .when{margin-top:0; border-top:0; border-left:2px solid var(--coral); padding:0 0 0 10px}
+  .next{grid-template-columns:1fr}
+  .duo{grid-template-columns:1fr} .duo>div:first-child{border-right:0; border-bottom:1px solid var(--rule)}
+  .canvas{grid-template-columns:1fr}
+  .canvas>div{border-right:0}
+  table{font-size:14.2px} th,td{padding:9px 10px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+
+/* ---------- print ---------- */
+@media print{
+  @page{size:A4; margin:16mm 14mm}
+  body{font-size:11pt; line-height:1.62; color:#000}
+  .bar,.grain,.logoslot{display:none!important}
+  .hero{color:#000; padding:0 0 8pt; overflow:visible}
+  .hero .bg{display:none}
+  .hero h1{font-size:26pt; color:var(--navy)} .hero h1 em{color:var(--coral)}
+  .hero .lede{color:#333; font-size:11.5pt}
+  .eyebrow{color:var(--coral)}
+  .clock{box-shadow:none; padding:0; border-top:2pt solid var(--coral); padding-top:10pt}
+  .band{color:#000; border:1.5pt solid var(--royal); border-radius:0; margin:14pt 0; break-inside:avoid}
+  .band .bg{display:none} .band .in{padding:14pt 16pt} .band h3{color:var(--navy)} .band .stat{color:var(--coral)}
+  section{padding:16pt 0; break-inside:auto}
+  h2.sec,h3,h4{break-after:avoid; color:var(--navy)}
+  table,.duo,.canvas,.alert,.foryou,.next{break-inside:avoid}
+  thead th{background:#E8EFF8!important; color:var(--navy)!important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  tbody tr:nth-child(even){background:transparent}
+  .foryou{background:transparent; border-left:2pt solid var(--sky)}
+  .alert{background:transparent}
+  .rail{position:static}
+  .sheet{grid-template-columns:96px 1fr; gap:20px}
+  footer{background:transparent; color:#000; border-top:1.5pt solid var(--navy)}
+  footer h3,footer a{color:#000}
+  a[href^="http"]::after{content:" (" attr(href) ")"; font-size:8.5pt; color:#555; word-break:break-all}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter>
+</svg>
+
+<div class="bar">
+  <div class="in">
+    <span class="who">รอบ Portfolio TCAS70 · ฉบับผู้ปกครอง · ตรวจสอบข้อมูล 7 ส.ค. 2569</span>
+    <button class="btn" onclick="window.print()">บันทึกเป็น PDF</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="bg"></div>
+  <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
+  <div class="wrap">
+    <div class="logoslot">พื้นที่โลโก้ผู้จัดทำ</div>
+    <div class="eyebrow">ปีการศึกษา 2570 · สำหรับ DEK70</div>
+    <h1>รอบ Portfolio<br>คือ<em>ประตูบานแรก</em><br>ไม่ใช่ประตูสำรอง</h1>
+    <p class="lede">คู่มืออ่านเองจบในตัว สำหรับพ่อแม่ที่อยากเข้าใจว่าลูกกำลังเจอกับอะไร ควรช่วยตรงไหน และไม่ควรไปยุ่งตรงไหน มีภาคสำหรับนักเรียนและครูแนะแนวต่อท้าย</p>
+
+    <div class="clock">
+      <h2>ตอนนี้อยู่ตรงไหนของปฏิทิน TCAS70</h2>
+      <div class="today" id="today">7 สิงหาคม 2569</div>
+      <div class="spine"><div class="fill" id="fill" style="width:6%"></div><div class="pin" id="pin" style="left:6%"></div></div>
+      <div class="next" id="next"></div>
+      <p class="note" style="margin-bottom:0">แถบนี้คำนวณจากวันที่ในเครื่องของคุณเทียบกับปฏิทินกลางของ ทปอ. ถ้าเปิดอ่านคนละวัน ตัวเลขจะขยับตาม</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">01</div><div class="tag">เส้นทาง</div></div>
+  <div>
+    <h2 class="sec">ลูกกำลังยืนอยู่ตรงไหนของเส้นทางยาว 12 ปี</h2>
+    <p class="sub">จาก ม.4 ถึงวันที่ทำงานเป็นหัวหน้าทีม แต่ละช่วงถามคำถามคนละข้อ</p>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>ความเครียดส่วนใหญ่ในบ้านช่วงนี้เกิดจากการที่พ่อแม่กับลูกกำลังตอบคำถามคนละข้อกันอยู่ พ่อแม่มักถามว่า "จบแล้วจะทำงานอะไร" ส่วนลูกกำลังถูกบังคับให้ตอบว่า "เดือนหน้าจะยื่นคณะอะไร" สองคำถามนี้ห่างกันสิบปี</div>
+
+    <p>เส้นทางการศึกษาไทยแบ่งได้เป็นสามช่วงที่ต่อกันแต่ใช้เกณฑ์ตัดสินคนละชุด ช่วงมัธยมปลายคือ ม.4 ถึง ม.6 จบราวอายุ 18 คำถามหลักของช่วงนี้คือ <strong>สนใจอาชีพกลุ่มไหน</strong> ช่วงมหาวิทยาลัยคือปี 1 ถึงปี 4 จบราวอายุ 22 คำถามคือ <strong>ต้องสอบอะไรถึงจะเข้าไปได้</strong> และช่วงทำงานตั้งแต่วันแรกจนถึงระดับหัวหน้างานราวอายุ 30 คำถามคือ <strong>ต้องมีทักษะอะไรถึงจะไปต่อได้</strong></p>
+
+    <p>ประเด็นที่มักถูกมองข้ามคือคำถามทั้งสามข้อนี้ต้องตอบไล่ตามลำดับ การที่ลูกยังตอบคำถามข้อแรกไม่ได้ ไม่ได้แปลว่าเขาไม่มีอนาคต แต่แปลว่าเขายังอยู่ในขั้นที่ควรได้ลองทำ ลองเข้าค่าย ลองทำโครงงาน ซึ่งบังเอิญเป็นสิ่งเดียวกันกับที่รอบ Portfolio ต้องการพอดี</p>
+
+    <p>สำหรับเด็ก ม.6 ในปีการศึกษา 2569 หรือที่เรียกกันว่า DEK70 ช่วงเวลาที่เหลือคือประมาณ 8 ถึง 10 เดือนก่อนจะรู้ผลรอบสุดท้าย ปีนี้จึงเป็นปีที่คำถามทั้งสามข้อถูกบีบมาถามพร้อมกัน</p>
+  </div>
+</div>
+</section>
+
+<!-- 2 -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">02</div><div class="tag">เลือกคณะ</div></div>
+  <div>
+    <h2 class="sec">เลือกคณะด้วยสามเสา ไม่ใช่ด้วยชื่อคณะ</h2>
+    <p class="sub">วิชาการ ทักษะวิชาชีพ ทักษะการทำงาน</p>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>ถ้าจะช่วยลูกได้อย่างเดียวในบทนี้ ให้ช่วยด้วยการตั้งคำถาม ไม่ใช่ด้วยการเสนอชื่อคณะ คำถามที่ได้ผลคือ "วิชาไหนที่หนูทำแล้วไม่รู้สึกว่าเวลาผ่านช้า" ไม่ใช่ "ทำไมไม่เอาหมอ"</div>
+
+    <p>คณะหนึ่งคณะประกอบด้วยของสามอย่างที่แยกกันชัดเจน อย่างแรกคือ <strong>วิชาการ</strong> คือเนื้อหาที่ต้องเรียนจริงในห้อง เช่น แคลคูลัส กายวิภาค กฎหมายแพ่ง อย่างที่สองคือ <strong>ทักษะวิชาชีพ</strong> คือสิ่งที่ต้องทำเป็นเมื่อจบไปประกอบอาชีพนั้น เช่น เขียนโปรแกรม ตรวจคนไข้ ว่าความ อย่างที่สามคือ <strong>ทักษะการทำงาน</strong> คือสิ่งที่ทุกอาชีพต้องใช้เหมือนกัน เช่น ทำงานเป็นทีม สื่อสารกับคนที่ไม่เห็นด้วย บริหารเวลา</p>
+
+    <div class="canvas">
+      <div><h4>วิชาการ</h4><p>ลองเปิดหลักสูตรจริงในเว็บคณะ อ่านชื่อวิชาปี 1 ทั้งหมด ถ้าลูกอ่านแล้วเฉย ๆ ทั้งหน้า นั่นคือสัญญาณ</p></div>
+      <div><h4>ทักษะวิชาชีพ</h4><p>ดูว่างานจริงของอาชีพนั้นทำอะไรทั้งวัน ไม่ใช่ดูจากละคร หาศิษย์เก่าถามได้ยิ่งดี</p></div>
+      <div><h4>ทักษะการทำงาน</h4><p>ข้อนี้ย้ายข้ามคณะได้ ทำให้การเลือกผิดไม่ได้แปลว่าเสียเวลาทั้งหมด</p></div>
+    </div>
+
+    <p>เหตุผลที่ต้องแยกสามอย่างนี้ก่อนทำพอร์ต เพราะกรรมการอ่านพอร์ตจะมองหาหลักฐานของเสาที่สองและสามเป็นหลัก ส่วนเสาแรกเขาดูจากเกรดกับคะแนนสอบอยู่แล้ว พอร์ตที่เอาแต่โชว์ว่าเรียนเก่งจึงเป็นพอร์ตที่พูดซ้ำในสิ่งที่เอกสารอื่นบอกไปแล้ว</p>
+  </div>
+</div>
+</section>
+
+<!-- 3 -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">03</div><div class="tag">ปฏิทิน</div><div class="when">ก.ค. 69 – มิ.ย. 70</div></div>
+  <div>
+    <h2 class="sec">ปฏิทิน TCAS70 ทั้งปี</h2>
+    <p class="sub">อ้างอิงปฏิทินกลางของ ทปอ. จาก mytcas.com ตรวจสอบเมื่อ 7 ส.ค. 2569</p>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>สิ่งเดียวที่พ่อแม่ควรจำจากตารางนี้คือ <strong>วันยืนยันสิทธิ์</strong> ของแต่ละรอบ เพราะเป็นวันเดียวที่พลาดแล้วแก้ไม่ได้เลย ส่วนวันสอบและวันสมัคร โรงเรียนกับตัวลูกจะตามอยู่แล้ว</div>
+
+    <div class="alert">
+      <b>ปีนี้เปลี่ยนจริง ไม่ใช่แค่เลื่อนวัน</b>
+      วันสอบ TGAT และ TPAT2-5 ย้ายจากเดือนธันวาคมไปเป็น 30 ม.ค. ถึง 1 ก.พ. 2570 ทำให้ช่วงมกราคมถึงมีนาคมมีสนามสอบติดกันหนักมาก และปีนี้กลับไปสอบด้วยกระดาษทั้งหมด ยกเลิกการสอบด้วยคอมพิวเตอร์ ใครที่วางแผนโดยอิงปฏิทินปีก่อนจะพลาดทั้งกระดาน
+    </div>
+
+    <table>
+      <caption>ปฏิทินหลักตลอดปี</caption>
+      <thead><tr><th class="num">ช่วงเวลา</th><th>สิ่งที่เกิดขึ้น</th></tr></thead>
+      <tbody>
+        <tr><td class="num">15 ก.ค. 2569</td><td>เปิดระบบ myTCAS และ TCASFolio ให้ลงทะเบียนและเริ่มสร้างแฟ้มผลงานได้</td></tr>
+        <tr><td class="num hot">15 ส.ค. 2569</td><td><strong>วันแรกที่มหาวิทยาลัยเริ่มเปิดรับรอบ 1 Portfolio ได้</strong> แต่ละแห่งกำหนดวันจริงเอง ไม่ได้เปิดพร้อมกัน</td></tr>
+        <tr><td class="num">ต.ค. 2569</td><td>ช่วงสมัครสอบ TPAT1 ของ กสพท สำหรับสายแพทย์ ทันตะ สัตวแพทย์ เภสัช</td></tr>
+        <tr><td class="num">4 – 10 พ.ย. 2569</td><td>สมัครสอบ TGAT และ TPAT2-5 มีช่วงรับคำร้องสมัครล่าช้าเพิ่มวันที่ 11 – 12 พ.ย.</td></tr>
+        <tr><td class="num hot">30 ม.ค. – 1 ก.พ. 2570</td><td>สอบ TGAT และ TPAT2-5 แบบกระดาษ</td></tr>
+        <tr><td class="num">13 ก.พ. 2570</td><td>สอบ TPAT1 กสพท</td></tr>
+        <tr><td class="num hot">10 มี.ค. 2570</td><td>ประกาศผลรอบ 1 Portfolio ในระบบ</td></tr>
+        <tr><td class="num hot">10 – 11 มี.ค. 2570</td><td><strong>ยืนยันสิทธิ์รอบ 1</strong> พลาดวันนี้เท่ากับสละสิทธิ์โดยอัตโนมัติ</td></tr>
+        <tr><td class="num">12 มี.ค. 2570</td><td>สละสิทธิ์ครั้งที่ 1 สำหรับคนที่ยืนยันไปแล้วแต่อยากไปรอบถัดไป</td></tr>
+        <tr><td class="num">13 มี.ค. 2570 เป็นต้นไป</td><td>มหาวิทยาลัยเริ่มเปิดรับรอบ 2 Quota</td></tr>
+        <tr><td class="num">13 – 15 มี.ค. 2570</td><td>สอบ A-Level</td></tr>
+        <tr><td class="num">3 พ.ค. 2570</td><td>ประกาศผลรอบ 2 ยืนยันสิทธิ์ 3 – 4 พ.ค. สละสิทธิ์ 5 พ.ค.</td></tr>
+        <tr><td class="num">7 – 11 พ.ค. 2570</td><td>สมัครรอบ 3 Admission ผ่าน mytcas.com มีช่วงเพิ่มเติม 12 – 13 พ.ค.</td></tr>
+        <tr><td class="num">22 และ 27 พ.ค. 2570</td><td>ประกาศผลรอบ 3 สองครั้ง ยืนยันสิทธิ์ 22 – 23 พ.ค.</td></tr>
+        <tr><td class="num">29 พ.ค. – 15 มิ.ย. 2570</td><td>รอบ 4 Direct Admission สมัครผ่านระบบมหาวิทยาลัย</td></tr>
+      </tbody>
+    </table>
+    <p class="note">ผู้สมัครหนึ่งคนสละสิทธิ์ได้สูงสุดหนึ่งครั้งเท่านั้น และต้องทำในช่วงที่ระบบเปิดให้ทำ ใครยืนยันสิทธิ์รอบ 1 แล้วเปลี่ยนใจ ต้องกดสละสิทธิ์ให้ทันวันที่ 12 มี.ค. 2570 มิฉะนั้นสมัครรอบถัดไปไม่ได้</p>
+  </div>
+</div>
+</section>
+
+<!-- 4 -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">04</div><div class="tag">เกณฑ์</div></div>
+  <div>
+    <h2 class="sec">รอบ Portfolio ใช้อะไรตัดสินบ้าง</h2>
+    <p class="sub">สี่องค์ประกอบ ที่แต่ละหลักสูตรให้น้ำหนักไม่เท่ากัน</p>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>คำว่า "รอบพอร์ต" ทำให้หลายบ้านเข้าใจว่าใช้แค่แฟ้มผลงาน ความจริงคือแฟ้มผลงานเป็นเพียงหนึ่งในสี่ และบางหลักสูตรยังขอคะแนนสอบด้วย การไม่อ่านประกาศให้ครบคือสาเหตุการตกรอบที่พบบ่อยที่สุด</div>
+
+    <table>
+      <caption>องค์ประกอบที่ใช้ในรอบ 1</caption>
+      <thead><tr><th>องค์ประกอบ</th><th>คืออะไร</th><th>ข้อควรระวัง</th></tr></thead>
+      <tbody>
+        <tr><td><strong>GPAX</strong></td><td>เกรดเฉลี่ยสะสมทุกภาคเรียนที่ผ่านมา</td><td>หลายหลักสูตรตั้งขั้นต่ำไว้ ต่ำกว่านั้นคือคัดออกทันทีไม่ว่าพอร์ตจะดีแค่ไหน</td></tr>
+        <tr><td><strong>แฟ้มสะสมผลงาน</strong></td><td>หลักฐานผลงาน กิจกรรม และการเล่าเรื่องของตัวเอง</td><td>จำนวนหน้าสูงสุดแต่ละหลักสูตรกำหนดไม่เท่ากัน และบางแห่งบังคับให้ทำผ่านระบบ TCASFolio เท่านั้น</td></tr>
+        <tr><td><strong>TGAT / TPAT</strong></td><td>ข้อสอบกลางของ ทปอ. วัดความถนัดทั่วไปและความถนัดวิชาชีพ</td><td>บางโครงการในรอบ 1 ขอคะแนนนี้ด้วย ซึ่งแปลว่าต้องสมัครสอบไว้ตั้งแต่พฤศจิกายน</td></tr>
+        <tr><td><strong>คะแนนอื่น</strong></td><td>ผลสอบภาษา เช่น TOEFL IELTS CU-TEP หรือข้อสอบเฉพาะของสถาบัน</td><td>บางใบมีอายุจำกัด ต้องเช็กว่ายังไม่หมดอายุ ณ วันยื่น</td></tr>
+      </tbody>
+    </table>
+
+    <h3>องค์ประกอบภายในแฟ้มผลงาน</h3>
+    <p>สิ่งที่นับเป็นผลงานได้แบ่งหยาบ ๆ เป็นสี่กลุ่ม คือ <strong>เกียรติบัตร</strong> จากการแข่งขันหรืออบรม <strong>กิจกรรม</strong> ที่เข้าร่วมทั้งในและนอกโรงเรียน <strong>ค่ายและการอบรม</strong> ที่ใช้เวลาต่อเนื่อง และ <strong>ชิ้นงาน</strong> ที่ลงมือทำจริง เช่น โครงงาน แอปพลิเคชัน งานเขียน งานออกแบบ</p>
+    <p>น้ำหนักของสี่กลุ่มนี้ไม่เท่ากันเลย ชิ้นงานที่ลงมือทำจริงหนึ่งชิ้นที่เล่าได้ว่าเจอปัญหาอะไรและแก้ยังไง มักมีน้ำหนักมากกว่าเกียรติบัตรเข้าร่วมสิบใบ เพราะเกียรติบัตรเข้าร่วมพิสูจน์แค่ว่ามาถึงงาน</p>
+  </div>
+</div>
+</section>
+
+<!-- 5 opportunity -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">05</div><div class="tag">โอกาส</div></div>
+  <div>
+    <h2 class="sec">ทำไมรอบนี้ถึงไม่ใช่รอบสำรอง</h2>
+    <p class="sub">เทียบสี่รอบ และดูจำนวนรับจริงของหลักสูตรที่ประกาศแล้ว</p>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>ความเข้าใจผิดที่แพงที่สุดคือคิดว่า "ไม่ทันรอบพอร์ตก็ไปสอบรอบ 3 เอา" ความจริงคือบางหลักสูตรไม่เปิดรับในรอบ 3 เลย ถ้าลูกเล็งหลักสูตรแบบนั้นแล้วข้ามรอบ 1 คือหมดโอกาสของปีนั้นทันที</div>
+
+    <table>
+      <caption>สี่รอบต่างกันอย่างไร</caption>
+      <thead><tr><th>รอบ</th><th>ใช้อะไรตัดสิน</th><th>สมัครที่ไหน</th><th class="num">รู้ผล</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1 Portfolio</strong></td><td>แฟ้มผลงาน เกรด และบางแห่งใช้คะแนนสอบร่วม</td><td>ระบบของแต่ละมหาวิทยาลัย</td><td class="num">10 มี.ค. 70</td></tr>
+        <tr><td><strong>2 Quota</strong></td><td>โควตาตามพื้นที่ โรงเรียน หรือความสามารถพิเศษ</td><td>ระบบของแต่ละมหาวิทยาลัย</td><td class="num">3 พ.ค. 70</td></tr>
+        <tr><td><strong>3 Admission</strong></td><td>คะแนนสอบกลางล้วน เลือกอันดับได้หลายอันดับ</td><td>mytcas.com</td><td class="num">22 พ.ค. 70</td></tr>
+        <tr><td><strong>4 Direct Admission</strong></td><td>เกณฑ์ของมหาวิทยาลัยเอง เก็บที่นั่งที่เหลือ</td><td>ระบบของแต่ละมหาวิทยาลัย</td><td class="num">7 มิ.ย. 70</td></tr>
+      </tbody>
+    </table>
+
+    <div class="band">
+      <div class="bg"></div>
+      <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
+      <div class="in">
+        <div class="stat">8 เดือน</div>
+        <h3>รอบ 1 จบเกมเร็วที่สุด</h3>
+        <p>ใครติดรอบ 1 และกดยืนยันสิทธิ์ในวันที่ 10 หรือ 11 มี.ค. 2570 คือจบกระบวนการทั้งหมด ไม่ต้องเข้าสอบ A-Level ในสัปดาห์ถัดมา นี่คือเหตุผลที่รอบนี้มีคนแย่งเยอะแม้จะรับน้อย</p>
+      </div>
+    </div>
+
+    <h3>จำนวนรับจริงของ TCAS70 เท่าที่ประกาศแล้ว</h3>
+    <p>ณ วันที่ 7 ส.ค. 2569 มหาวิทยาลัยเพิ่งทยอยประกาศ กลุ่มที่เปิดเร็วประกาศตัวเลขครบแล้ว ส่วนหลายหลักสูตรยอดนิยมยังไม่ปล่อยจำนวนรับรายสาขา ช่องที่ยังว่างในตารางนี้คือของจริงที่ยังไม่มีใครรู้ ไม่ใช่ข้อมูลที่ตกหล่น</p>
+
+    <table>
+      <caption>สถานะการประกาศรับรอบ 1 Portfolio ปีการศึกษา 2570</caption>
+      <thead><tr><th>สถาบัน</th><th class="num">ช่วงรับสมัคร</th><th class="num">จำนวนรับที่ประกาศ</th><th>หมายเหตุ</th></tr></thead>
+      <tbody>
+        <tr><td>มรภ.สวนสุนันทา</td><td class="num">15 – 31 ส.ค. 2569</td><td class="num">7,196 ที่นั่ง</td><td>ค่าสมัคร 350 บาท สมัครที่ระบบของมหาวิทยาลัย</td></tr>
+        <tr><td>ม.วลัยลักษณ์</td><td class="num">15 ส.ค. 69 – 16 ก.พ. 70</td><td class="num">4,229 ที่นั่ง</td><td>ครอบคลุม 57 หลักสูตร ช่วงรับยาวข้ามปี</td></tr>
+        <tr><td>ม.เทคโนโลยีสุรนารี</td><td class="num">17 ส.ค. – 14 ก.ย. 2569</td><td class="num blank">แยกตามสำนักวิชา</td><td>มีรอบ 1 ครั้งที่ 2 อีกช่วง พ.ย. 2569</td></tr>
+        <tr><td>จุฬาลงกรณ์มหาวิทยาลัย</td><td class="num blank">ยังไม่ประกาศ</td><td class="num blank">ยังไม่ประกาศ</td><td class="hot">รับเฉพาะแฟ้มที่ทำผ่าน TCASFolio เท่านั้น</td></tr>
+        <tr><td>ม.แม่ฟ้าหลวง</td><td class="num blank">ยังไม่ประกาศ</td><td class="num blank">ยังไม่ประกาศ</td><td class="hot">รับเฉพาะแฟ้มที่ทำผ่าน TCASFolio เท่านั้น</td></tr>
+        <tr><td>คณะแพทยศาสตร์ศรีสวางควัฒน ราชวิทยาลัยจุฬาภรณ์</td><td class="num blank">ยังไม่ประกาศ</td><td class="num blank">ยังไม่ประกาศ</td><td>ให้ลงทะเบียนใช้ TCASFolio ทั้งรอบ Portfolio และ Quota</td></tr>
+      </tbody>
+    </table>
+
+    <h4>วิธีเช็กตัวเลขจริงด้วยตัวเองใน 2 นาที</h4>
+    <ol>
+      <li>เปิด <a href="https://course.mytcas.com/">course.mytcas.com</a> แล้วค้นชื่อคณะหรือสาขาที่ลูกเล็ง</li>
+      <li>ดูแถบรอบ 1 ถึงรอบ 4 ของหลักสูตรนั้น ตัวเลขจำนวนรับจะอยู่ตรงนั้น</li>
+      <li>สังเกตว่ารอบไหนขึ้นว่าไม่เปิดรับ นั่นคือข้อมูลสำคัญที่สุดในหน้า</li>
+      <li>กดเข้าไปอ่านประกาศฉบับเต็มของมหาวิทยาลัยอีกชั้น เพราะเงื่อนไขย่อยอยู่ในนั้น</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<!-- 6 process -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">06</div><div class="tag">ขั้นตอน</div></div>
+  <div>
+    <h2 class="sec">ขั้นตอนการยื่นรอบ Portfolio</h2>
+    <p class="sub">จากเลือกโครงการจนถึงยืนยันสิทธิ์</p>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>ขั้นที่พ่อแม่ช่วยได้จริงคือขั้นที่ 3 กับขั้นที่ 8 คือการเตรียมเอกสารราชการและการจ่ายเงินให้ทันเวลา ส่วนขั้นที่เหลือถ้าเข้าไปทำแทน ผลจะออกมาเป็นพอร์ตของพ่อแม่ ซึ่งกรรมการดูออก</div>
+
+    <ol class="flow">
+      <li><b>เลือกโครงการที่จะยื่น</b><br>หนึ่งคณะมักเปิดหลายโครงการย่อย เช่น โครงการเรียนดี โครงการความสามารถพิเศษ แต่ละโครงการมีคุณสมบัติคนละชุด เลือกผิดโครงการคือตกตั้งแต่ยังไม่ได้อ่านพอร์ต</li>
+      <li><b>อ่านคุณสมบัติของโครงการนั้นให้ครบ</b><br>เกรดขั้นต่ำ หน่วยกิตขั้นต่ำในกลุ่มสาระ จำนวนหน้าพอร์ต เอกสารเฉพาะสาขา</li>
+      <li><b>ลงทะเบียน myTCAS และยืนยันตัวตน</b><br>ชื่อสกุลและเลขบัตรประชาชนต้องตรงกับเอกสารราชการเป๊ะ</li>
+      <li><b>สมัครในระบบของมหาวิทยาลัย</b><br>รอบ 1 ไม่ได้สมัครผ่าน mytcas.com แต่สมัครที่เว็บของแต่ละแห่ง</li>
+      <li><b>ส่งแฟ้มผลงาน</b><br>ตามรูปแบบที่หลักสูตรกำหนด ไฟล์ PDF ลิงก์ TCASFolio หรือกรอกในระบบมหาวิทยาลัยโดยตรง</li>
+      <li><b>สอบสัมภาษณ์หรือสอบเพิ่มเติม</b><br>บางโครงการมีสอบปฏิบัติ สอบข้อเขียนเฉพาะ หรือตรวจร่างกาย</li>
+      <li><b>รอผลคะแนนสอบกลาง ถ้าโครงการนั้นใช้</b><br>โครงการที่ขอคะแนน TGAT หรือ TPAT จะประกาศผลหลังคะแนนออก</li>
+      <li><b>ประกาศผลและยืนยันสิทธิ์</b><br>10 มี.ค. 2570 ประกาศผล และ 10 ถึง 11 มี.ค. คือหน้าต่างยืนยันสิทธิ์ ถ้าไม่กดคือหลุด</li>
+      <li><b>ถ้าไม่ติด ไปต่อรอบถัดไป</b><br>ไม่ต้องทำอะไรเพิ่ม สิทธิ์ในการสมัครรอบ 2 ยังอยู่ครบ</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<!-- 7 reading announcement -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">07</div><div class="tag">อ่านประกาศ</div></div>
+  <div>
+    <h2 class="sec">วิธีอ่านระเบียบการฉบับจริง</h2>
+    <p class="sub">ทักษะที่ทำให้ประหยัดเวลาได้มากที่สุดในกระบวนการทั้งหมด</p>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>นี่คือบทที่พ่อแม่มีประโยชน์ที่สุด เพราะประกาศรับสมัครเขียนด้วยภาษาราชการ ซึ่งผู้ใหญ่อ่านคล่องกว่าเด็ก ม.6 การนั่งอ่านด้วยกันหนึ่งรอบมีค่ามากกว่าการจ้างคนทำพอร์ต</div>
+
+    <p>ประกาศรับสมัครของทุกมหาวิทยาลัยมีโครงเหมือนกัน และมีอยู่หกจุดที่ต้องหาให้เจอก่อนอย่างอื่น</p>
+
+    <ol>
+      <li><strong>คุณสมบัติผู้สมัคร</strong> โดยเฉพาะ GPAX ขั้นต่ำ และหน่วยกิตขั้นต่ำในกลุ่มสาระคณิตศาสตร์และวิทยาศาสตร์ ซึ่งเด็กสายศิลป์มักไม่ผ่านข้อนี้โดยไม่รู้ตัว</li>
+      <li><strong>จำนวนรับ</strong> ของโครงการนั้นโดยเฉพาะ ไม่ใช่จำนวนรวมของคณะ</li>
+      <li><strong>ข้อกำหนดของแฟ้มผลงาน</strong> ขนาดไฟล์ จำนวนหน้า และรูปแบบไฟล์</li>
+      <li><strong>เอกสารประกอบ</strong> เช่น ใบ ปพ.1 หนังสือรับรอง ผลตรวจตาบอดสี</li>
+      <li><strong>ปฏิทินของโครงการนั้น</strong> ซึ่งไม่จำเป็นต้องตรงกับปฏิทินกลาง</li>
+      <li><strong>ข้อความเรื่องการให้ข้อมูลเท็จ</strong> ทุกประกาศมีข้อนี้ และผลคือถูกตัดสิทธิ์ย้อนหลังได้แม้ผ่านการคัดเลือกไปแล้ว</li>
+    </ol>
+
+    <div class="alert">
+      <b>จุดที่คนพลาดบ่อยที่สุด</b>
+      หลายโครงการเขียนว่ารับสมัครถึงวันหนึ่ง แต่กำหนดวันชำระเงินไว้อีกวันหนึ่งที่เร็วกว่า การกดสมัครสำเร็จโดยยังไม่จ่ายเงินไม่นับว่าสมัคร ให้ตรวจสถานะการชำระเงินในระบบจนขึ้นว่าสำเร็จทุกครั้ง
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 8 judges -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">08</div><div class="tag">มุมกรรมการ</div></div>
+  <div>
+    <h2 class="sec">นักเรียนคิดอย่างหนึ่ง กรรมการอ่านอีกอย่างหนึ่ง</h2>
+    <p class="sub">ช่องว่างนี้คือสาเหตุที่พอร์ตหนา ๆ หลายเล่มไม่ได้ผล</p>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>ถ้าเคยสัมภาษณ์คนเข้าทำงาน จะคุ้นกับความรู้สึกนี้ คือใบสมัครที่ไล่รายการความสำเร็จมาเป็นพรืดอ่านแล้วจำอะไรไม่ได้เลย ส่วนคนที่เล่าเรื่องเดียวแต่เล่าจนเห็นภาพจะติดอยู่ในหัว พอร์ตทำงานแบบเดียวกัน</div>
+
+    <div class="duo">
+      <div>
+        <h4>สิ่งที่นักเรียนใส่เข้าไป</h4>
+        <ul>
+          <li>เกียรติบัตรทุกใบที่หาได้</li>
+          <li>รายชื่อกิจกรรมที่เคยเข้าร่วม</li>
+          <li>ค่ายที่เคยไป</li>
+          <li>ชิ้นงานที่เคยทำ</li>
+        </ul>
+        <p style="margin-top:14px; color:var(--slate); font-size:14.8px">ทั้งหมดนี้คือ "รายการของ" ซึ่งตอบได้แค่ว่าเคยไปที่ไหนมาบ้าง</p>
+      </div>
+      <div>
+        <h4>สิ่งที่กรรมการมองหา</h4>
+        <ul>
+          <li><strong>ประสบการณ์</strong> ที่เปลี่ยนวิธีคิดของเด็กจริง</li>
+          <li><strong>กระบวนการคิด</strong> ว่าไอเดียมาจากไหน</li>
+          <li><strong>การแก้ปัญหา</strong> ตอนที่มันพัง แล้วทำอะไรต่อ</li>
+          <li><strong>ศักยภาพ</strong> ว่าเรียนคณะนี้แล้วจะไปได้ไกลแค่ไหน</li>
+        </ul>
+        <p style="margin-top:14px; color:var(--slate); font-size:14.8px">ทั้งหมดนี้คือ "หลักฐานของความคิด" ซึ่งต้องเขียนออกมา ไม่ได้มากับเกียรติบัตร</p>
+      </div>
+    </div>
+
+    <h3>ตัวอย่างการเขียนบรรยายผลงานสองแบบ</h3>
+    <p>สมมติเด็กสองคนใส่กิจกรรมเดียวกันคือค่ายวิทยาศาสตร์สามวัน</p>
+    <p><strong>แบบที่หนึ่ง</strong> เขียนว่าภูมิใจกับกิจกรรมนี้มาก ได้เข้าร่วมและประทับใจ ประโยคนี้ใช้ได้กับกิจกรรมอะไรก็ได้บนโลก กรรมการจึงไม่ได้ข้อมูลใหม่เลย</p>
+    <p><strong>แบบที่สอง</strong> เขียนว่าในค่ายนี้ทีมออกแบบการทดลองผิดตั้งแต่วันแรกเพราะไม่ได้ตั้งตัวแปรควบคุม พอผลออกมาไม่สมเหตุสมผลจึงต้องรื้อใหม่ในคืนเดียว และตั้งแต่นั้นก็ติดนิสัยเช็กตัวแปรควบคุมก่อนเริ่มทุกครั้ง ประโยคนี้เขียนได้เฉพาะคนที่อยู่ในเหตุการณ์จริง</p>
+    <p>ความต่างไม่ได้อยู่ที่กิจกรรม แต่อยู่ที่ว่าเล่าถึง <strong>สิ่งที่เปลี่ยนไปในตัวเอง</strong> หรือเปล่า</p>
+
+    <h3>เมื่อผู้สมัครคุณสมบัติใกล้กันมาก</h3>
+    <p>ในหลักสูตรที่แข่งสูง ผู้สมัครที่เข้ารอบสัมภาษณ์มักมีโปรไฟล์ใกล้เคียงกันจนแทบแยกไม่ออก เช่น เกรดต่างกันหนึ่งจุดทศนิยม คะแนนภาษาอังกฤษต่างกันไม่กี่คะแนน มีกิจกรรมจิตอาสาเหมือนกัน มีประสบการณ์ฝึกงานเหมือนกัน</p>
+    <p>ในสถานการณ์แบบนั้น สิ่งที่ทำให้แยกออกไม่ใช่ตัวเลขที่สูงกว่าเล็กน้อย แต่คือความสอดคล้องของทั้งเล่ม ว่าผลงานที่เลือกมา เหตุผลที่อยากเรียน และแผนหลังเข้าเรียน เล่าเรื่องเดียวกันหรือเปล่า เด็กที่คะแนนสูงกว่าแต่พอร์ตกระจัดกระจายไม่มีทิศทาง มักแพ้เด็กที่คะแนนต่ำกว่าเล็กน้อยแต่ทุกหน้าชี้ไปทางเดียวกัน</p>
+    <p class="note">อีกจุดที่ต่างกันคือหลักฐานที่หน่วยงานรับรอง ผลงานที่มีหน่วยงานหรือสถาบันรับรองจะน่าเชื่อถือกว่าผลงานที่มีแต่รูปถ่ายกับคำบรรยายของตัวเอง เพราะกรรมการตรวจสอบย้อนได้</p>
+  </div>
+</div>
+</section>
+
+<!-- 9 canvas -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">09</div><div class="tag">วิเคราะห์</div></div>
+  <div>
+    <h2 class="sec">เข้าใจคนที่จะอ่านพอร์ต</h2>
+    <p class="sub">ชุดคำถามสำหรับใช้ตอนไปงานเปิดบ้านหรือคุยกับรุ่นพี่</p>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>ถ้าจะไปงานเปิดบ้านมหาวิทยาลัยด้วยกัน นี่คือหกคำถามที่ควรถือติดมือไป ได้คำตอบครบหกข้อมีค่ากว่าการเดินเก็บของแจกทั้งงาน</div>
+
+    <div class="canvas">
+      <div><h4>เด็กแบบไหนที่อาจารย์คณะนี้อยากได้</h4><p>ถามตรง ๆ ว่ารุ่นที่สอนสนุกที่สุดมีนิสัยร่วมกันอย่างไร</p></div>
+      <div><h4>เด็กแบบไหนที่อาจารย์เป็นห่วง</h4><p>คำตอบนี้จะบอกว่าคณะนี้เรียนหนักตรงไหน และเด็กแบบไหนมักถอดใจกลางทาง</p></div>
+      <div><h4>เด็กแบบไหนที่ไม่เหมาะกับคณะนี้</h4><p>ไม่ใช่คำถามหยาบคาย อาจารย์ส่วนใหญ่ตอบตรงและช่วยประหยัดเวลาสี่ปี</p></div>
+      <div><h4>งานที่จบไปแล้วทำจริงคืออะไร</h4><p>ถามชื่อตำแหน่งจริงของรุ่นพี่สามคนล่าสุด ไม่เอาคำตอบแบบภาพรวม</p></div>
+      <div><h4>อาจารย์คาดหวังให้ผู้สมัครมีอะไรมาก่อน</h4><p>บางคณะอยากได้พื้นฐานเฉพาะ บางคณะอยากได้แค่ความอยากรู้</p></div>
+      <div><h4>ทักษะอะไรที่อาจารย์แนะนำให้เริ่มฝึกวันนี้</h4><p>คำตอบนี้เอาไปทำเป็นแผนสำหรับปิดเทอมได้ทันที</p></div>
+    </div>
+
+    <p>เมื่อได้คำตอบครบแล้ว ให้กลับมาดูพอร์ตที่มีอยู่ แล้วถามว่าเล่มนี้ตอบคำถามข้อไหนของอาจารย์บ้าง ถ้าไม่ตอบข้อไหนเลย แปลว่าต้องเรียงใหม่ ไม่ใช่ต้องหาผลงานเพิ่ม</p>
+  </div>
+</div>
+</section>
+
+<!-- 10 SOP -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">10</div><div class="tag">เรียงความ</div></div>
+  <div>
+    <h2 class="sec">เรียงความแนะนำตัว โครงสี่ย่อหน้า</h2>
+    <p class="sub">Statement of Purpose คือหน้าที่กรรมการอ่านจริงที่สุดในเล่ม</p>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>ข้อห้ามข้อเดียวของบทนี้คืออย่าเขียนให้ลูก ผู้ใหญ่เขียนไทยสวยกว่าเสมอ แต่กรรมการอ่านออกทันทีเพราะสำนวนไม่ตรงกับอายุ และตอนสัมภาษณ์เด็กจะอธิบายสิ่งที่ตัวเองไม่ได้เขียนไม่ได้</div>
+
+    <table>
+      <caption>สิ่งที่ต้องมีครบก่อนส่ง</caption>
+      <thead><tr><th>ย่อหน้า</th><th>ทำหน้าที่อะไร</th><th>เขียนอะไรลงไป</th></tr></thead>
+      <tbody>
+        <tr><td class="num"><strong>1</strong></td><td>เปิดเรื่อง</td><td>เหตุผลที่เลือกสาขานี้ จุดเริ่มต้นที่ทำให้สนใจ และภาพอนาคตที่อยากไปให้ถึง ควรเริ่มด้วยเหตุการณ์จริงหนึ่งเหตุการณ์ ไม่ใช่ประโยคทั่วไปว่าสนใจมาตั้งแต่เด็ก</td></tr>
+        <tr><td class="num"><strong>2</strong></td><td>พิสูจน์</td><td>ประสบการณ์ ค่าย การอบรม หรือชิ้นงานที่ทำให้ความสนใจนั้นมีหลักฐาน เลือกมาสองถึงสามชิ้นที่เชื่อมกันได้ ไม่ใช่ไล่ทั้งหมด</td></tr>
+        <tr><td class="num"><strong>3</strong></td><td>เชื่อมกับตัวเอง</td><td>จุดแข็งที่มี แผนที่ตั้งใจทำถ้าได้เข้าเรียน และสิ่งที่จะเอาไปทำต่อหลังจบ ตรงนี้คือที่ที่ตอบว่าทำไมต้องเป็นเด็กคนนี้</td></tr>
+        <tr><td class="num"><strong>4</strong></td><td>เชื่อมกับหลักสูตร</td><td>อ้างถึงวิชา ห้องปฏิบัติการ หรือกลุ่มวิจัยของหลักสูตรนั้นแบบระบุชื่อได้ ย่อหน้านี้คือหลักฐานว่าอ่านหลักสูตรมาจริง และเป็นย่อหน้าที่คนส่วนใหญ่ไม่มี</td></tr>
+      </tbody>
+    </table>
+
+    <h4>ตรวจก่อนส่ง</h4>
+    <p>อ่านทั้งเรียงความแล้วถามว่า ถ้าเปลี่ยนชื่อคณะเป็นคณะอื่น ข้อความนี้ยังใช้ได้อยู่ไหม ถ้ายังใช้ได้ แปลว่ายังไม่ได้เขียนถึงคณะนี้จริง ๆ ต้องกลับไปเติมย่อหน้าที่สี่</p>
+  </div>
+</div>
+</section>
+
+<!-- 11 pages -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">11</div><div class="tag">รูปเล่ม</div></div>
+  <div>
+    <h2 class="sec">โครงหน้าในแฟ้มผลงาน</h2>
+    <p class="sub">หน้าประวัติ หน้ากิจกรรม และหน้าผลงาน</p>
+
+    <div class="alert">
+      <b>อ่านบทที่ 13 ก่อนลงมือทำตามบทนี้</b>
+      ปีนี้มีระบบกลางชื่อ TCASFolio และมีมหาวิทยาลัยหลายแห่งประกาศแล้วว่ารับเฉพาะแฟ้มที่ทำผ่านระบบนั้น ถ้าหลักสูตรที่ลูกเล็งอยู่ในกลุ่มนั้น การนั่งจัดหน้าเองในโปรแกรมออกแบบจะเสียเวลาฟรี ให้ข้ามไปอ่านบทที่ 13 ก่อน แล้วค่อยกลับมา
+    </div>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>สิ่งที่ควรจับตาในบทนี้ไม่ใช่ความสวย แต่คือจำนวนหน้าที่หลักสูตรกำหนด เกินแม้แต่หน้าเดียวบางแห่งตัดสิทธิ์ตรง ๆ</div>
+
+    <h3>หน้าประวัติส่วนตัว</h3>
+    <p>หน้าเดียวนี้ทำหน้าที่ให้กรรมการจำเด็กคนนี้ได้ ควรมีรูป ชื่อ ช่องทางติดต่อ จุดแข็งที่สรุปเป็นประโยคเดียว นิสัยการทำงาน ทักษะที่ใช้ได้จริง และรายการผลงานกับกิจกรรมแบบย่อ สิ่งที่ไม่ควรมีคือคำคมและคำบรรยายบุคลิกแบบลอย ๆ ที่พิสูจน์ไม่ได้</p>
+
+    <h3>หน้ากิจกรรมและหน้าผลงาน</h3>
+    <p>หนึ่งหน้าควรเล่าหนึ่งเรื่อง ใส่รูปหนึ่งถึงสามรูปที่เห็นว่ากำลังทำอะไรอยู่จริง ไม่ใช่รูปยืนถ่ายรวม พร้อมชื่อกิจกรรม ช่วงเวลา บทบาทของตัวเอง และที่สำคัญที่สุดคือย่อหน้าสั้น ๆ ที่ตอบว่า <strong>ได้ทักษะอะไรมา และกระบวนการที่ได้เรียนรู้คืออะไร</strong></p>
+    <p>ถ้ามีหลักฐานเพิ่มเติมที่อยู่ออนไลน์ เช่น เว็บโครงงาน คลิปนำเสนอ หรือที่เก็บโค้ด ให้ใส่ลิงก์หรือ QR ไว้ให้กรรมการกดดูได้ แต่ต้องเช็กก่อนส่งว่าลิงก์เปิดได้จริงและตั้งค่าเป็นสาธารณะ</p>
+
+    <h3>ผลงานที่มีหน่วยงานรับรอง</h3>
+    <p>ผลงานชิ้นเดียวกันจะดูน่าเชื่อถือต่างกันมาก ระหว่างการเล่าลอย ๆ กับการมีตราหรือหนังสือรับรองจากหน่วยงานที่จัด ถ้าเคยเข้าค่ายหรือแข่งขันที่มีหน่วยงานรัฐหรือมหาวิทยาลัยเป็นเจ้าภาพ ให้ตามขอเอกสารรับรองมาแนบ อย่าใช้แค่รูปถ่าย</p>
+  </div>
+</div>
+</section>
+
+<!-- 12 project -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">12</div><div class="tag">โครงงาน</div></div>
+  <div>
+    <h2 class="sec">กระบวนการทำโครงงานที่เล่าแล้วมีน้ำหนัก</h2>
+    <p class="sub">โครงงานหนึ่งชิ้นที่เล่าครบขั้นตอน ชนะกิจกรรมสิบอย่างที่เล่าไม่ได้</p>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>ถ้าลูกยังไม่มีชิ้นงานเลย ข่าวดีคือโครงงานที่ใช้ได้ไม่จำเป็นต้องใหญ่ ปัญหาใกล้ตัวในโรงเรียนหรือในชุมชนที่แก้ได้จริงมีน้ำหนักกว่าโครงงานหรูที่ลอกหัวข้อมาจากอินเทอร์เน็ต</div>
+
+    <ol class="flow">
+      <li><b>ตั้งต้นจากปัญหา</b><br>ปัญหาที่เห็นด้วยตาตัวเอง ไม่ใช่ปัญหาที่อ่านเจอ</li>
+      <li><b>หาข้อมูลและตั้งสมมติฐาน</b><br>ค้นว่ามีใครแก้ปัญหานี้แล้วบ้าง แก้ด้วยวิธีไหน ทำไมยังไม่พอ</li>
+      <li><b>สรุปเป็นโจทย์ที่ชัดและระบุกลุ่มเป้าหมาย</b><br>ใครเดือดร้อน เดือดร้อนแค่ไหน วัดได้ไหม</li>
+      <li><b>ระดมไอเดียแล้วเลือกหนึ่งอัน</b><br>ส่วนที่กรรมการอยากเห็นคือ<strong>เหตุผลที่ตัดไอเดียอื่นทิ้ง</strong> ไม่ใช่แค่ไอเดียที่เลือก</li>
+      <li><b>ทำต้นแบบ</b><br>หยาบได้ กระดาษก็ได้ ขอให้ทดสอบกับคนจริง</li>
+      <li><b>วัดผลและสรุปประโยชน์</b><br>ใครได้อะไร วัดเป็นตัวเลขได้ยิ่งดี</li>
+      <li><b>บอกแนวทางพัฒนาต่อ</b><br>ข้อนี้แสดงว่ายังคิดต่อเป็น ซึ่งคือคำว่าศักยภาพในภาษากรรมการ</li>
+    </ol>
+
+    <p>เวลาเขียนลงพอร์ต ให้เล่าตามลำดับนี้ทั้งเจ็ดขั้น อย่าข้ามไปที่ผลลัพธ์เลย เพราะขั้นที่ 4 กับขั้นที่ 7 คือสองจุดที่แสดงวิธีคิดชัดที่สุด และเป็นสองจุดที่พอร์ตส่วนใหญ่ตัดทิ้ง</p>
+  </div>
+</div>
+</section>
+
+<!-- 13 TCASFolio NEW -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">13</div><div class="tag">ใหม่ปีนี้</div><div class="when">เปิดแล้ว 15 ก.ค. 69</div></div>
+  <div>
+    <h2 class="sec">TCASFolio ระบบแฟ้มผลงานกลางของ ทปอ.</h2>
+    <p class="sub">บทนี้ไม่มีในคู่มือปีก่อน และเป็นบทที่เปลี่ยนวิธีทำพอร์ตมากที่สุด</p>
+
+    <div class="foryou"><b>สำหรับพ่อแม่</b>ระบบนี้ถูกสร้างมาเพื่อลดภาระค่าใช้จ่ายของครอบครัวโดยตรง เจตนาคือทำให้ไม่ต้องจ่ายเงินจ้างทำพอร์ตให้สวย แล้วดึงการตัดสินกลับมาที่เนื้อผลงาน ถ้าที่บ้านเคยคิดจะจ้าง ให้อ่านบทนี้ก่อน</div>
+
+    <p>TCASFolio คือระบบทำแฟ้มสะสมผลงานที่ ทปอ. พัฒนาขึ้นเป็นเครื่องมือกลาง เข้าใช้ผ่านบัญชี myTCAS เดียวกับที่ใช้ลงทะเบียน TCAS70 เปิดใช้งานแล้วตั้งแต่ 15 ก.ค. 2569 ระบบจะสร้างแฟ้มออกมาเป็นไฟล์ PDF หรือเป็นลิงก์ที่ส่งให้มหาวิทยาลัยได้</p>
+
+    <h3>สี่ข้อที่ต้องเข้าใจให้ตรง</h3>
+    <ol>
+      <li><strong>ไม่ได้บังคับทุกที่ แต่บังคับบางที่</strong><br>ทปอ. ทำระบบนี้เป็นเครื่องมือกลาง แต่ละมหาวิทยาลัยและแต่ละหลักสูตรตัดสินใจเองว่าจะใช้หรือไม่ รวมถึงกำหนดจำนวนหน้า เนื้อหา และคำถามเพิ่มเติมของตัวเอง ปัจจุบันมีหลายแห่งประกาศแล้วว่ารับเฉพาะแฟ้มจากระบบนี้เท่านั้น ได้แก่ จุฬาลงกรณ์มหาวิทยาลัย มหาวิทยาลัยแม่ฟ้าหลวง คณะแพทยศาสตร์ศรีสวางควัฒน ราชวิทยาลัยจุฬาภรณ์ และบางโครงการของมหาวิทยาลัยบูรพา</li>
+      <li><strong>สร้างพอร์ตเสร็จไม่เท่ากับสมัครเสร็จ</strong><br>นี่คือจุดที่อันตรายที่สุดของปีนี้ หลังสร้างแฟ้มแล้วยังต้องไปสมัครและชำระเงินในระบบของมหาวิทยาลัยแยกต่างหาก การกดเสร็จใน TCASFolio ไม่ได้ส่งใบสมัครไปที่ไหนทั้งนั้น</li>
+      <li><strong>มีเครื่องหมายรับรองข้อมูล</strong><br>ระบบมีตรา Verify สำหรับข้อมูลที่หน่วยงานที่เกี่ยวข้องรับรองโดยตรง ถ้ากิจกรรมหรือผลงานที่เคยทำมีอยู่ในระบบแล้ว สามารถเลือกเชื่อมข้อมูลมาใช้ได้เลยโดยไม่ต้องกรอกซ้ำ ซึ่งทั้งประหยัดเวลาและน่าเชื่อถือกว่าการพิมพ์เอง</li>
+      <li><strong>สร้างแยกตามหลักสูตรได้</strong><br>ระบบให้สร้างแฟ้มแยกตามหลักสูตรที่จะสมัครได้สูงสุด 40 รายการ แปลว่าไม่ต้องใช้เล่มเดียวยื่นทุกที่อีกต่อไป ซึ่งเป็นข่าวดี เพราะพอร์ตที่ปรับให้ตรงคณะย่อมแข็งกว่าพอร์ตกลาง ๆ</li>
+    </ol>
+
+    <h3>ลำดับที่ควรทำก่อนหลัง</h3>
+    <ol class="flow">
+      <li><b>เช็กก่อนว่าหลักสูตรที่เล็งใช้ระบบไหน</b><br>เข้าไปอ่านประกาศรับสมัครรอบ Portfolio ของแต่ละแห่งโดยตรง อย่าเหมาว่าทุกที่เหมือนกัน และอย่าเหมาว่าทุกที่เปิดรับวันที่ 15 ส.ค. พร้อมกัน</li>
+      <li><b>รวบรวมของทั้งหมดมาไว้ที่เดียวก่อน</b><br>เกียรติบัตร รูป ไฟล์งาน หนังสือรับรอง ปพ.1 ยังไม่ต้องคัด แค่รวมให้ครบ</li>
+      <li><b>คัดเฉพาะที่เกี่ยวกับคณะนั้น</b><br>ขั้นนี้คือขั้นที่ตัดสินคุณภาพของเล่ม ใส่ทุกอย่างที่มีคือวิธีที่ทำให้เล่มอ่อนลง</li>
+      <li><b>กรอกในระบบและตรวจเงื่อนไขเฉพาะหลักสูตร</b><br>จำนวนหน้าสูงสุด รูปแบบไฟล์ที่ต้องส่ง และคำถามเพิ่มเติมที่หลักสูตรตั้งไว้</li>
+      <li><b>ให้ครูแนะแนวช่วยอ่านหนึ่งรอบ</b><br>คนที่เห็นพอร์ตมาหลายร้อยเล่มจะจับจุดที่เจ้าตัวมองไม่เห็นได้เร็ว</li>
+      <li><b>ตรวจข้อมูลบุคคลให้ตรงเอกสารราชการ</b><br>ชื่อ นามสกุล เลขบัตรประชาชน ถ้าไม่ตรงจะมีปัญหาตอนยืนยันสิทธิ์</li>
+      <li><b>สมัครและจ่ายเงินในระบบมหาวิทยาลัย</b><br>แล้วตรวจสถานะจนขึ้นว่าชำระสำเร็จ</li>
+    </ol>
+
+    <div class="alert">
+      <b>ข้อควรระวังเพิ่มเติม</b>
+      ถ้าแก้ไขแฟ้มหลังจากส่งลิงก์ไปแล้ว ไฟล์และลิงก์อาจเปลี่ยน ให้ตรวจเวอร์ชันที่มหาวิทยาลัยได้รับอีกครั้งและทำตามคำแนะนำของแต่ละแห่ง อีกข้อคือหลายโครงการไม่ได้คัดแบบใครมาก่อนได้ก่อน การรีบส่งวันแรกจึงไม่ได้เปรียบ แต่การรอวันสุดท้ายเสียเปรียบแน่นอนเพราะไม่เหลือเวลาแก้เอกสาร
+    </div>
+
+    <p class="note">คู่มือการใช้งานฉบับทางการอยู่ที่ <a href="https://www.mytcas.com/doc/tcasfolio-t70/">mytcas.com/doc/tcasfolio-t70</a></p>
+  </div>
+</div>
+</section>
+
+<!-- 14 -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">14</div><div class="tag">สรุป</div></div>
+  <div>
+    <h2 class="sec">สรุปเป็นวงจรเดียว</h2>
+
+    <p>กระบวนการทั้งหมดในคู่มือนี้ย่อลงได้เป็นวงจรสั้น ๆ คือ <strong>เลือกหลักสูตร</strong> แล้ว <strong>อ่านเกณฑ์ของหลักสูตรนั้น</strong> แล้ว <strong>เทียบกับสิ่งที่มีอยู่จริง</strong> แล้ว <strong>เติมส่วนที่ขาด</strong> แล้ววนกลับไปเลือกหลักสูตรถัดไป ทำซ้ำจนครบทุกที่ที่ตั้งใจยื่น</p>
+
+    <p>จุดที่คนส่วนใหญ่ทำพลาดคือเริ่มจากขั้นที่สี่ คือลงมือทำพอร์ตก่อนแล้วค่อยหาที่ยื่น ซึ่งได้เล่มที่ไม่ตรงกับใครเลย</p>
+
+    <div class="band">
+      <div class="bg"></div>
+      <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
+      <div class="in">
+        <h3>สามอย่างที่พ่อแม่ทำแล้วช่วยได้จริง</h3>
+        <p>หนึ่ง นั่งอ่านประกาศรับสมัครด้วยกันหนึ่งรอบ สอง จดวันยืนยันสิทธิ์ทุกรอบไว้ในปฏิทินของตัวเอง สาม เตรียมเอกสารราชการและจัดการเรื่องค่าสมัครให้ทันเวลา ส่วนเนื้อหาในเล่มปล่อยให้เป็นของลูก เพราะคนที่ต้องนั่งตอบคำถามในห้องสัมภาษณ์คือเขา</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 15 for students -->
+<section>
+<div class="sheet">
+  <div class="rail"><div class="num">15</div><div class="tag">ภาคผนวก</div></div>
+  <div>
+    <h2 class="sec">ถ้ายังอยู่ ม.4 หรือ ม.5</h2>
+    <p class="sub">ส่วนนี้สำหรับนักเรียนที่ยังมีเวลาเหลือมากกว่าหนึ่งปี</p>
+
+    <p>ข้อได้เปรียบเดียวที่แลกด้วยเงินไม่ได้คือเวลา คนที่เริ่มตอน ม.4 ไม่ได้ชนะเพราะมีผลงานเยอะกว่า แต่ชนะเพราะมีเวลาให้ <strong>ล้มเหลวแล้วเล่าเรื่องนั้นได้</strong> ในขณะที่คนที่เริ่มตอน ม.6 มีเวลาแค่พอไปเก็บเกียรติบัตรเข้าร่วม</p>
+
+    <p>สิ่งที่ควรทำในแต่ละปี ปีแรกคือลองให้กว้าง เข้าค่ายคนละแนวสามถึงสี่ค่ายเพื่อตัดตัวเลือกออก ปีที่สองคือเลือกหนึ่งถึงสองทางแล้วทำโครงงานจริงให้จบหนึ่งชิ้น จบคือมีคนใช้จริงหรือมีผลวัดได้ ไม่ใช่แค่ส่งครู ปีสุดท้ายคือเรียบเรียงและเขียน ไม่ใช่ปีที่ไปหาของใหม่</p>
+
+    <p>อีกอย่างที่ทำได้ตั้งแต่วันนี้คือเปิดบัญชี TCASFolio ไว้ล่วงหน้าเมื่อถึงรุ่นของตัวเอง แล้วบันทึกกิจกรรมทันทีที่ทำเสร็จ เพราะรายละเอียดที่ทำให้เรื่องเล่ามีน้ำหนัก เช่น ตอนนั้นพังเพราะอะไร แก้ยังไง จะลืมภายในไม่กี่เดือน</p>
+  </div>
+</div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h3>แหล่งอ้างอิงและวันที่ตรวจสอบ</h3>
+    <p>เนื้อหาทั้งหมดตรวจสอบเมื่อวันที่ 7 สิงหาคม 2569 กำหนดการและจำนวนรับเปลี่ยนแปลงได้ตลอด ก่อนใช้ตัดสินใจจริงให้ตรวจซ้ำจากแหล่งทางการทุกครั้ง</p>
+    <ul>
+      <li>ปฏิทินกลางและกำหนดการทุกรอบ: <a href="https://www.mytcas.com/">mytcas.com</a></li>
+      <li>ค้นหลักสูตรและจำนวนรับรายหลักสูตร: <a href="https://course.mytcas.com/">course.mytcas.com</a></li>
+      <li>สถิติผู้สมัครและคะแนนย้อนหลัง: <a href="https://www.mytcas.com/stat">mytcas.com/stat</a></li>
+      <li>คู่มือการใช้งาน TCASFolio: <a href="https://www.mytcas.com/doc/tcasfolio-t70/">mytcas.com/doc/tcasfolio-t70</a></li>
+      <li>ประกาศรับสมัครรอบ Portfolio ของแต่ละมหาวิทยาลัยโดยตรง</li>
+    </ul>
+    <p style="opacity:.8">จัดทำขึ้นใหม่ทั้งฉบับ ไม่ได้คัดลอกเนื้อหา ภาพ หรือรูปแบบจากเอกสารของผู้ใดผู้หนึ่ง ตัวเลขจำนวนรับที่ระบุว่ายังไม่ประกาศ หมายถึงยังไม่มีการเผยแพร่ ณ วันที่ตรวจสอบ</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var TH=["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+  var MS=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
+  // ปฏิทินกลาง TCAS70 (ค.ศ.)
+  var EV=[
+    [2026,6,15,"เปิดระบบ myTCAS และ TCASFolio"],
+    [2026,7,15,"วันแรกที่มหาวิทยาลัยเริ่มเปิดรับรอบ 1 Portfolio ได้"],
+    [2026,10,4,"เริ่มสมัครสอบ TGAT และ TPAT2-5"],
+    [2027,0,30,"สอบ TGAT และ TPAT2-5"],
+    [2027,1,13,"สอบ TPAT1 กสพท"],
+    [2027,2,10,"ประกาศผลรอบ 1 และยืนยันสิทธิ์ 10-11 มี.ค."],
+    [2027,2,13,"สอบ A-Level และเริ่มรอบ 2 Quota"],
+    [2027,4,7,"สมัครรอบ 3 Admission"],
+    [2027,4,29,"เริ่มรอบ 4 Direct Admission"]
+  ];
+  var now=new Date(), t0=new Date(2026,6,15), t1=new Date(2027,5,15);
+  var el=document.getElementById('today');
+  if(el) el.textContent="วันนี้ "+now.getDate()+" "+TH[now.getMonth()]+" "+(now.getFullYear()+543);
+
+  var p=Math.min(100,Math.max(0,(now-t0)/(t1-t0)*100));
+  var f=document.getElementById('fill'), pin=document.getElementById('pin');
+  if(f){f.style.width=p.toFixed(1)+"%";} if(pin){pin.style.left=p.toFixed(1)+"%";}
+
+  var up=EV.map(function(e){return {d:new Date(e[0],e[1],e[2]), l:e[3]};})
+           .filter(function(e){return e.d>=new Date(now.getFullYear(),now.getMonth(),now.getDate());})
+           .slice(0,3);
+  var box=document.getElementById('next');
+  if(!box) return;
+  if(!up.length){ box.innerHTML='<div><div class="d">จบรอบแล้ว</div><div class="l">ปฏิทิน TCAS70 สิ้นสุดแล้ว ให้ดูปฏิทินปีถัดไปที่ mytcas.com</div></div>'; return; }
+  box.innerHTML=up.map(function(e){
+    var days=Math.round((e.d-now)/86400000);
+    var when=days<=0?"วันนี้":("อีก "+days+" วัน");
+    return '<div><div class="d">'+when+'</div><div class="l"><strong>'+e.d.getDate()+' '+MS[e.d.getMonth()]+' '+String((e.d.getFullYear()+543)).slice(2)+'</strong> · '+e.l+'</div></div>';
+  }).join('');
+})();
+</script>
+</body>
+</html>
