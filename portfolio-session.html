@@ -126,7 +126,7 @@ body{
 .compare-col .col-tag{font-size:.85cqw; font-weight:700; letter-spacing:.04em; margin-bottom:.9cqw; text-transform:uppercase}
 .compare-col.before{background:#F1F2F4; border:1px solid var(--rule)}
 .compare-col.before .col-tag{color:var(--slate)}
-.compare-col.before p{font-size:1.05cqw; color:var(--ink); line-height:1.75; margin:0}
+.compare-col.before p{font-size:1.05cqw; color:var(--ink); line-height:1.75; margin:auto 0}
 .compare-col.after{background:#FFF8EC; border:1.5px solid var(--gold)}
 .compare-col.after .col-tag{color:#B8860B}
 .star-line{display:flex; gap:.7cqw; align-items:flex-start; margin-bottom:.75cqw}
@@ -210,6 +210,14 @@ body{
 .copy-status.show{opacity:1}
 .lab-hint{font-size:.82cqw; color:var(--slate); line-height:1.5}
 
+/* ---------- agenda ---------- */
+.agenda-list{flex:1; display:flex; flex-direction:column; justify-content:center; gap:1.3cqw}
+.agenda-item{display:flex; align-items:center; gap:1.4cqw; padding-bottom:1.3cqw; border-bottom:1px solid var(--rule)}
+.agenda-item:last-child{border-bottom:none; padding-bottom:0}
+.agenda-item .num{font-size:2.3cqw; font-weight:700; color:var(--rule); min-width:3.4cqw}
+.agenda-item .a-title{font-size:1.35cqw; font-weight:700; color:var(--ink); margin-bottom:.25cqw}
+.agenda-item .a-desc{font-size:.95cqw; color:var(--slate)}
+
 @media (prefers-color-scheme: dark){
   body{background:#000}
 }
@@ -220,7 +228,51 @@ body{
 <div class="stage">
   <div class="deck" id="deck">
 
-    <section class="slide active" data-title="ขั้นตอนสมัคร Portfolio">
+    <section class="slide active" data-title="Agenda">
+      <div class="slide-head">
+        <div class="brand">
+          <div class="mark">A</div>
+          <div class="name">THE PORTFOLIO For University</div>
+        </div>
+        <div class="slide-title">
+          วันนี้เราจะคุยอะไรกันบ้าง
+          <small>Agenda</small>
+        </div>
+      </div>
+
+      <div class="agenda-list">
+        <div class="agenda-item">
+          <div class="num">01</div>
+          <div class="content">
+            <div class="a-title">ขั้นตอนสมัคร Portfolio ให้ติดมหาวิทยาลัย</div>
+            <div class="a-desc">รู้ทุกสเต็ป ตั้งแต่เปิดบัญชีจนยืนยันสิทธิ์ — อัปเดต TCAS70</div>
+          </div>
+        </div>
+        <div class="agenda-item">
+          <div class="num">02</div>
+          <div class="content">
+            <div class="a-title">ทำไมพอร์ตต้องเล่าเรื่องให้เป็น</div>
+            <div class="a-desc">เข้าใจว่าใครอ่านพอร์ตของคุณบ้าง และมองหาอะไร</div>
+          </div>
+        </div>
+        <div class="agenda-item">
+          <div class="num">03</div>
+          <div class="content">
+            <div class="a-title">เทคนิค STAR Method</div>
+            <div class="a-desc">แกะจากพอร์ตจริง เปรียบเทียบเล่าแบบทั่วไป vs เล่าแบบ STAR</div>
+          </div>
+        </div>
+        <div class="agenda-item">
+          <div class="num">04</div>
+          <div class="content">
+            <div class="a-title">Workshop: เขียนเรื่องของคุณเอง</div>
+            <div class="a-desc">ลงมือทำ ฝึกแนะนำตัว 30 วินาที และสร้าง Prompt ด้วย AI</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="ขั้นตอนสมัคร Portfolio">
       <div class="slide-head">
         <div class="brand">
           <div class="mark">A</div>
